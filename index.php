@@ -42,7 +42,7 @@
 
   <!-- Page Content -->
   <section>
-    <div class="container">
+    <div class="container my-auto">
       <div class="row">
         <div class="col-lg-6">
           <h1 class="mt-5 text-light text-shadow"><img src="img/logo.png" width="75"> e-<span class="text-danger">PRO</span>TRACK+</h1>
