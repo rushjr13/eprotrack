@@ -46,8 +46,8 @@
       <div class="row">
         <div class="col-lg-6">
           <h1 class="mt-5 text-light text-shadow"><img src="img/logo.png" width="75"> e-<span class="text-danger">PRO</span>TRACK+</h1>
-          <p class="text-justify text-light text-shadow"><strong>Elektronik <span class="text-danger">Procurement</span> Tracking</strong>, Adalah aplikasi untuk melacak data pengadaan yang ada di seluruh OPD Provinsi Gorontalo, dengan menggunakan metode pengadaan apapun dan jenis pengadaan apapun.</p>
-          <small class="text-justify text-light text-shadow"><img src="img/gorontalo.png" class="img img-responsive" width="50"> Biro Pengadaan Sekretariat Daerah Provinsi Gorontalo</small>
+          <p class="text-justify text-light text-shadow mb-5"><strong>Elektronik <span class="text-danger">Procurement</span> Tracking</strong>, Adalah aplikasi untuk melacak data pengadaan yang ada di seluruh OPD Provinsi Gorontalo, dengan menggunakan metode pengadaan apapun dan jenis pengadaan apapun.</p>
+          <img src="img/gorontalo.png" class="img img-responsive mt-5" width="50%">
         </div>
       </div>
     </div>
