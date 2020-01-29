@@ -46,7 +46,7 @@
       <div class="row">
         <div class="col-lg-6">
           <h1 class="mt-5 text-light text-shadow"><img src="img/logo.png" width="75"> e-<span class="text-danger">PRO</span>TRACK+</h1>
-          <p class="text-justify text-light text-shadow">Elektronik Procurement Tracking, Adalah aplikasi untuk melacak data pengadaan yang ada di seluruh OPD Provinsi Gorontalo, dengan menggunakan metode pengadaan apapun dan jenis pengadaan apapun.</p>
+          <p class="text-justify text-light text-shadow"><strong>Elektronik <span class="text-danger">Procurement</span> Tracking</strong>, Adalah aplikasi untuk melacak data pengadaan yang ada di seluruh OPD Provinsi Gorontalo, dengan menggunakan metode pengadaan apapun dan jenis pengadaan apapun.</p>
           <div class="row">
             <div class="col-lg-7">
               <img src="img/gorontalo.png" class="img img-responsive" width="100%">
