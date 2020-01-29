@@ -55,7 +55,8 @@
               <img src="img/lpse.png" class="img img-responsive" width="100%">
             </div>
           </div>
-          <small class="text-justify text-light text-shadow">Biro Pengadaan Sekretariat Daerah Provinsi Gorontalo</small>
+          <small class="text-justify text-light text-shadow">Biro Pengadaan Sekretariat Daerah Provinsi Gorontalo</small><br>
+          <small class="text-justify text-light text-shadow">LPSE Provinsi Gorontalo</small>
         </div>
       </div>
     </div>
