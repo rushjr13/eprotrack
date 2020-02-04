@@ -134,4 +134,5 @@ $autoload['language'] = array();
 */
 $autoload['model'] = array(
 	'Pengguna_m'=>'pengguna',
+	'Pkr_m'=>'pkr',
 );

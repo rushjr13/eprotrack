@@ -20,6 +20,9 @@ class Beranda extends CI_Controller {
 		}
 
 		// KHUSUS
+		$rup = rup('offline');
+		$data['penyedia'] = $rup['penyedia'];
+		$data['swakelola'] = $rup['swakelola'];
 		$data['judul'] = "Beranda";
 		$data['subjudul'] = "e-Protrack+";
 		$this->template->load('template', 'beranda', $data);

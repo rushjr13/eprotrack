@@ -9,6 +9,32 @@ function get($table, $field=null, $id=null)
     return $ci->db->get($table);
 }
 
+function rup($jaringan)
+{
+    if($jaringan=='offline'){
+        // OFFLINE
+        $penyedia = base_url('json/sirup-penyedia.json');
+        $swakelola = base_url('json/sirup-swakelola.json');
+    }else{
+        // ONLINE
+        $penyedia = "https://inaproc.lkpp.go.id/isb/api/2b60f20d-95dd-437c-9c94-61d0c08748ae/json/23093911/PengumumanPenyediaDaerah1618/tipe/4:12/parameter/2020:D76";
+        $swakelola = "https://inaproc.lkpp.go.id/isb/api/e0da2d3b-e1d8-49d5-89fa-5490062d7315/json/23093919/PengumumanSwakelolaDaerah1618/tipe/4:12/parameter/2020:D76";
+    }
+    $json_penyedia = file_get_contents($penyedia);
+    $json_swakelola = file_get_contents($swakelola);
+    $data['penyedia'] = json_decode($json_penyedia, true);
+    $data['swakelola'] = json_decode($json_swakelola, true);
+    return $data;
+}
+
+function tender()
+{
+    $tender = base_url('json/spse-tender.json');
+    $json_tender = file_get_contents($tender);
+    $data_tender = json_decode($json_tender, true);
+    return $data_tender;
+}
+
 function cek_sudah_masuk()
 {
 	$ci =& get_instance();
@@ -69,6 +95,79 @@ function tgl_indodate($tanggal){
     }
 
     return $tgl.' '.$bulan.' '.$thn;
+}
+
+// Tanggal Indonesia Berdasarkan Fungsi date() - 2019-12-13
+function tgl_indodatewaktu($tanggal){
+    date_default_timezone_set('Asia/Makassar');
+    $tgl = substr($tanggal, 8, 2);
+    $bln = substr($tanggal, 5, 2);
+    $thn = substr($tanggal, 0, 4);
+    $waktu = substr($tanggal, 11, 12);
+
+    if($bln=='01'){
+        $bulan='Januari';
+    } else if($bln=='02'){
+        $bulan='Februari';
+    } else if($bln=='03'){
+        $bulan='Maret';
+    } else if($bln=='04'){
+        $bulan='April';
+    } else if($bln=='05'){
+        $bulan='Mei';
+    } else if($bln=='06'){
+        $bulan='Juni';
+    } else if($bln=='07'){
+        $bulan='Juli';
+    } else if($bln=='08'){
+        $bulan='Agustus';
+    } else if($bln=='09'){
+        $bulan='September';
+    } else if($bln=='10'){
+        $bulan='Oktober';
+    } else if($bln=='11'){
+        $bulan='November';
+    } else if($bln=='12'){
+        $bulan='Desember';
+    }
+
+    return $tgl.' '.$bulan.' '.$thn.' - '.$waktu;
+}
+
+// Tanggal Indonesia Berdasarkan Fungsi date() - 2019-12-13
+function tgl_indodatebulan($tanggal){
+    date_default_timezone_set('Asia/Makassar');
+    $tgl = substr($tanggal, 8, 2);
+    $bln = substr($tanggal, 5, 2);
+    $thn = substr($tanggal, 0, 4);
+
+    if($bln=='01'){
+        $bulan='Januari';
+    } else if($bln=='02'){
+        $bulan='Februari';
+    } else if($bln=='03'){
+        $bulan='Maret';
+    } else if($bln=='04'){
+        $bulan='April';
+    } else if($bln=='05'){
+        $bulan='Mei';
+    } else if($bln=='06'){
+        $bulan='Juni';
+    } else if($bln=='07'){
+        $bulan='Juli';
+    } else if($bln=='08'){
+        $bulan='Agustus';
+    } else if($bln=='09'){
+        $bulan='September';
+    } else if($bln=='10'){
+        $bulan='Oktober';
+    } else if($bln=='11'){
+        $bulan='November';
+    } else if($bln=='12'){
+        $bulan='Desember';
+    }
+
+    return $bulan.' '.$thn;
 }
 
 // Hari Indonesia Berdasarkan Fungsi date() - l

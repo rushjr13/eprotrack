@@ -1,0 +1,11 @@
+/* Chrome, Safari and Opera syntax */
+:-webkit-full-screen {}
+
+/* Firefox syntax */
+:-moz-full-screen {}
+
+/* IE/Edge syntax */
+:-ms-fullscreen {}
+
+/* Standard syntax */
+:fullscreen {}

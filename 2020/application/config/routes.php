@@ -57,3 +57,12 @@ $route['translate_uri_dashes'] = FALSE;
 $route['masuk'] = 'auth';
 $route['daftar'] = 'auth/daftar';
 $route['lupa_sandi'] = 'auth/lupa_sandi';
+
+// RUP
+$route['rup/penyedia/(:num)'] = 'rup/data_penyedia/$1';
+$route['rup/swakelola/(:num)'] = 'rup/data_swakelola/$1';
+$route['rup/tender/(:num)'] = 'rup/data_tender/$1';
+
+// PKR BJ
+$route['pkr/bj/tambah'] = 'pkr/bj_tambah';
+$route['rup/bj/ubah/(:num)'] = 'pkr/bj_ubah/$1';
