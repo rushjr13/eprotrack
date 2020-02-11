@@ -14,7 +14,7 @@
           </thead>
           <tbody>
             <tr>
-              <td class="text-center"><?php if(!isset($tender['id_rup'])){echo "-";}else{echo $tender['id_rup'];} ?></td>
+              <td class="text-center"><?php if(!isset($tender['id_rup'][0])){echo "-";}else{echo $tender['id_rup'][0];} ?></td>
               <td><?=$tender['nama_paket'] ?></td>
               <td class="text-center">APBD</td>
             </tr>
@@ -61,7 +61,11 @@
     <tr>
       <td>Lokasi Pekerjaan</td>
       <td class="text-center">:</td>
-      <th><?=$tender['lokasi_pekerjaan'][0]['pkt_lokasi'] ?></th>
+      <th>
+        <?php foreach ($tender['lokasi_pekerjaan'] as $lokja): ?>
+          <?=$lokja['pkt_lokasi'].'<br>' ?>
+        <?php endforeach ?>
+      </th>
     </tr>
   </tbody>
 </table>

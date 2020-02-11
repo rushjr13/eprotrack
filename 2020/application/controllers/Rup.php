@@ -25,8 +25,8 @@ class Rup extends CI_Controller {
 		$data['subjudul'] = "Data Paket RUP";
 
 		$rup = rup('offline');
-		$data['penyedia'] = $rup['penyedia'];
-		$data['swakelola'] = $rup['swakelola'];
+		$data['penyedia'] = $this->rup->penyedia()->result_array();
+		$data['swakelola'] = $this->rup->swakelola()->result_array();
 	    $data['tender'] = tender();
 		$this->template->load('template', 'rup/index', $data);
 	}
@@ -45,17 +45,10 @@ class Rup extends CI_Controller {
 		if($id==null){
 
 		}else{
-			$rup = rup('offline');
-			$penyedia = $rup['penyedia'];
-			foreach ($penyedia as $py) {
-				$kode_rup = $py['kode_rup'];
-				if($kode_rup==$id){
-					$data['penyedia'] = $py;
-				}
-			}
+			$data['penyedia'] = $this->rup->penyedia($id)->row_array();
 			$data['judul'] = "RUP";
 			$data['subjudul'] = "Data Paket Penyedia";
-			$this->template->load('template', 'rup/data_penyedia', $data);
+			$this->template->load('rup/template', 'rup/data_penyedia', $data);
 		}
 	}
 
@@ -73,17 +66,10 @@ class Rup extends CI_Controller {
 		if($id==null){
 
 		}else{
-			$rup = rup('offline');
-			$swakelola = $rup['swakelola'];
-			foreach ($swakelola as $swk) {
-				$kode_rup = $swk['kode_rup'];
-				if($kode_rup==$id){
-					$data['swakelola'] = $swk;
-				}
-			}
+			$data['swakelola'] = $this->rup->swakelola($id)->row_array();
 			$data['judul'] = "RUP";
 			$data['subjudul'] = "Data Paket Swakelola";
-			$this->template->load('template', 'rup/data_swakelola', $data);
+			$this->template->load('rup/template', 'rup/data_swakelola', $data);
 		}
 	}
 
@@ -111,7 +97,7 @@ class Rup extends CI_Controller {
 			}
 			$data['judul'] = "RUP";
 			$data['subjudul'] = "Data Paket Tender";
-			$this->template->load('template', 'rup/data_tender', $data);
+			$this->template->load('rup/template', 'rup/data_tender', $data);
 		}
 	}
 

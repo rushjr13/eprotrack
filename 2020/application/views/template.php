@@ -24,38 +24,31 @@
   <link rel="stylesheet" href="<?=base_url()?>assets/dist/css/skins/_all-skins.min.css">
   <link rel="stylesheet" href="<?=base_url()?>assets/bower_components/morris.js/morris.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-  <script>
-  /* Get the documentElement (<html>) to display the page in fullscreen */
-  var elem = document.documentElement;
-
-  /* View in fullscreen */
-  function openFullscreen() {
-    if (elem.requestFullscreen) {
-      elem.requestFullscreen();
-    } else if (elem.mozRequestFullScreen) { /* Firefox */
-      elem.mozRequestFullScreen();
-    } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-      elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) { /* IE/Edge */
-      elem.msRequestFullscreen();
+  <script type="text/javascript">
+    function startTime()
+    {
+      var today=new Date();
+      var h=today.getHours();
+      var m=today.getMinutes();
+      var s=today.getSeconds();
+      // add a zero in front of numbers<10
+      h=checkTime(h);
+      m=checkTime(m);
+      s=checkTime(s);
+      document.getElementById('txt').innerHTML=h+":"+m+":"+s;
+      t=setTimeout('startTime()',500);
     }
-  }
-
-  /* Close fullscreen */
-  function closeFullscreen() {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.mozCancelFullScreen) { /* Firefox */
-      document.mozCancelFullScreen();
-    } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { /* IE/Edge */
-      document.msExitFullscreen();
+    function checkTime(i)
+    {
+      if (i<10)
+    {
+      i="0" + i;
     }
-  }
-</script>
+      return i;
+    }
+  </script>
 </head>
-<body class="hold-transition skin-red fixed layout-top-nav">
+<body class="hold-transition skin-red fixed layout-top-nav" onload="startTime()">
   <div class="wrapper">
     <header class="main-header">
       <nav class="navbar navbar-static-top">
@@ -71,19 +64,43 @@
               <li class="<?php if($judul=='Beranda'){echo "active";} ?>"><a href="<?=base_url() ?>">Beranda</a></li>
               <?php if($pengguna_masuk!=''){ ?>
                 <li class="<?php if($judul=='RUP'){echo "active";} ?>"><a href="<?=base_url('rup') ?>">RUP</a></li>
-                <li class="<?php if($judul=='Penilaian Kinerja Rekanan'){echo "active";} ?>"><a href="<?=base_url('pkr') ?>">Penilaian Kinerja Rekanan</a></li>
-                <li class="dropdown <?php if($judul=='Pengguna' || $judul=='Penyedia'){echo "active";} ?>">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Master <span class="caret"></span></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li class="<?php if($judul=='Pengguna'){echo "active";} ?>"><a href="<?=base_url('pengguna') ?>">Pengguna</a></li>
-                    <!-- <li class="divider"></li> -->
-                  </ul>
-                </li>
+                <!-- <li class="<?php if($judul=='Penilaian Kinerja Rekanan'){echo "active";} ?>"><a href="<?=base_url('pkr') ?>">Penilaian Kinerja Rekanan</a></li> -->
+                <?php if($pengguna_masuk['id_level']==1){ ?>
+                  <li class="dropdown <?php if($judul=='Pengguna' || $judul=='Master'){echo "active";} ?>">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Master <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li class="<?php if($judul=='Pengguna'){echo "active";} ?>"><a href="<?=base_url('pengguna') ?>">Pengguna</a></li>
+                      <li class="divider"></li>
+                      <li class="<?php if($subjudul=='Update Data' || $subjudul=='Update Data RUP Penyedia' || $subjudul=='Update Data RUP Swakelola' || $subjudul=='Update Data Tender' || $subjudul=='Update Data Satuan Kerja' || $subjudul=='Update Data Program' || $subjudul=='Update Data Kegiatan'){echo "active";} ?>"><a href="<?=base_url('update') ?>">Update Data</a></li>
+                      <li class="<?php if($subjudul=='Referensi'){echo "active";} ?>"><a href="<?=base_url('referensi') ?>">Referensi</a></li>
+                      <li class="<?php if($subjudul=='Rekapitulasi'){echo "active";} ?>"><a href="<?=base_url('rekapitulasi') ?>">Rekapitulasi</a></li>
+                    </ul>
+                  </li>
+                <?php } ?>
               <?php } ?>
             </ul>
           </div>
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+              <li class="dropdown notifications-menu">
+                <a href="#">
+                  <span><?=tgl_indoharitime(time()) ?></span> - <span id="txt"></span>
+                  <?php
+                    date_default_timezone_set('Asia/Makassar');
+                    $a = date ("H");
+                    if (($a>=1) && ($a<=11)){
+                      $saat = "Pagi";
+                    } else if(($a>11) && ($a<=15)) {
+                      $saat = "Siang";
+                    } else if (($a>15) && ($a<=18)) {
+                      $saat = "Sore";
+                    } else {
+                      $saat = "Malam";
+                    }
+                    echo ' '.$saat;
+                  ?>
+                </a>
+              </li>
               <?php if($pengguna_masuk!=''){ ?>
                 <li class="dropdown notifications-menu">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -130,7 +147,7 @@
                 <li class="dropdown user user-menu">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <img src="<?=base_url('uploads/icon.png') ?>" class="user-image" alt="User Image">
-                    <span class="hidden-xs">e-<strong>Protrack</strong>+</span>
+                    <span class="hidden-xs">e-<strong>Protrack</strong>+ </span>
                   </a>
                   <ul class="dropdown-menu">
                     <li class="user-header">
@@ -184,10 +201,9 @@
     <footer class="main-footer">
       <div class="container">
         <div class="pull-right hidden-xs">
-          <b>Version</b> 1.0.0
+          e-<b>Protrack</b>+ 2020 || <b>Versi</b> 1.0.0
         </div>
-        <strong>Copyright &copy; 2020 <a href="rushjr.wordpress.com">Rush Jr. Studio</a>.</strong> All rights
-        reserved.
+        <strong>Copyright &copy; 2020 <a href="#">Biro Pengadaan Sekretariat Daerah Provinsi Gorontalo</a></strong>
       </div>
       <!-- /.container -->
     </footer>
@@ -354,6 +370,22 @@
       'paging'      : true,
       'lengthChange': true,
       'searching'   : true,
+      'ordering'    : false,
+      'info'        : true,
+      'autoWidth'   : true
+    })
+    $('#table7').DataTable({
+      'paging'      : false,
+      'lengthChange': false,
+      'searching'   : true,
+      'ordering'    : false,
+      'info'        : false,
+      'autoWidth'   : true
+    })
+    $('#table8').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
       'ordering'    : false,
       'info'        : true,
       'autoWidth'   : true

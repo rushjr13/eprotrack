@@ -63,6 +63,19 @@ $route['rup/penyedia/(:num)'] = 'rup/data_penyedia/$1';
 $route['rup/swakelola/(:num)'] = 'rup/data_swakelola/$1';
 $route['rup/tender/(:num)'] = 'rup/data_tender/$1';
 
+// REKAPITULASI
+$route['rekapitulasi'] = 'referensi/rekapitulasi';
+$route['rekapitulasi/jp/edit/(:num)'] = 'referensi/rekapitulasi_jp/$1';
+$route['rekapitulasi/mp/edit/(:num)'] = 'referensi/rekapitulasi_mp/$1';
+
+// UPDATE
+$route['update/penyedia/proses'] = 'update/penyedia_proses';
+$route['update/swakelola/proses'] = 'update/swakelola_proses';
+$route['update/tender/proses'] = 'update/tender_proses';
+$route['update/satker/proses'] = 'update/satker_proses';
+$route['update/program/proses'] = 'update/program_proses';
+$route['update/kegiatan/proses'] = 'update/kegiatan_proses';
+
 // PKR BJ
 $route['pkr/bj/tambah'] = 'pkr/bj_tambah';
 $route['rup/bj/ubah/(:num)'] = 'pkr/bj_ubah/$1';

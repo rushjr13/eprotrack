@@ -1,9 +1,9 @@
 <div class="box box-primary">
   <div class="box-header with-border">
     <h3 class="box-title"><?=$swakelola['kode_rup'] ?> - <strong><?=$swakelola['nama_paket'] ?></strong></h3>
-    <div class="box-tools pull-right">
+    <!-- <div class="box-tools pull-right">
       <a href="<?=base_url('rup') ?>" class="btn btn-box-tool" data-toggle="tooltip" title="Kembali"><i class="fa fa-times"></i></a>
-    </div>
+    </div> -->
   </div>
   <div class="box-body table-responsive">
     <table class="table no-border" width="100%">
@@ -40,7 +40,7 @@
             <table class="table no-border" style="margin-bottom: 0px" width="100%" cellspacing="0">
               <tbody>
                 <tr>
-                  <td width="13%">MAK</td>
+                  <td width="15%">MAK</td>
                   <td class="text-center" width="3%">:</td>
                   <th><?=$swakelola['mak'] ?></th>
                 </tr>
@@ -62,7 +62,12 @@
                 <tr>
                   <td>Lokasi</td>
                   <td class="text-center">:</td>
-                  <th><?=$swakelola['lokasi'] ?>, <?=$swakelola['detail_lokasi'] ?></th>
+                  <th><?=$swakelola['lokasi'] ?></th>
+                </tr>
+                <tr>
+                  <td>Detail Lokasi</td>
+                  <td class="text-center">:</td>
+                  <th><?=$swakelola['detail_lokasi'] ?></th>
                 </tr>
                 <tr>
                   <td>Sumber Dana</td>
@@ -81,7 +86,7 @@
                     <table class="table no-border" style="margin-bottom: 0px" width="100%" cellspacing="0">
                       <tbody>
                         <tr>
-                          <td width="16%">Awal Pekerjaan</td>
+                          <td width="18%">Awal Pekerjaan</td>
                           <td class="text-center" width="3%">:</td>
                           <th><?=tgl_indodatebulan($swakelola['awal_pekerjaan']) ?></th>
                         </tr>
