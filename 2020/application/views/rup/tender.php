@@ -50,6 +50,6 @@
 <script>
   $(document).on("click", "#tbldatatender", function(){
     var id = $(this).data('id');
-    window.open("<?=base_url('rup/tender/') ?>"+id, "_blank", "toolbar=yes,scrollbars=yes,resizable=no,top=auto,left=auto,width=1080,height=650");
+    window.open("<?=base_url('rup/tender/') ?>"+id, "_blank", "toolbar=yes,scrollbars=yes,resizable=no,top=auto,left=auto,width=1280,height=720");
   });
 </script>

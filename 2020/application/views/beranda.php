@@ -3,8 +3,8 @@
   <div class="col-md-3 col-sm-6 col-xs-12">
     <div class="small-box bg-light-blue">
       <div class="inner">
-        <input type="hidden" id="program" value="<?=$program ?>">
-        <h3><?=number_format($program, 0, ',', '.') ?></h3>
+        <input type="hidden" id="program" value="<?=$program->num_rows() ?>">
+        <h3><?=number_format($program->num_rows(), 0, ',', '.') ?></h3>
         <h4 class="text-bold">Program</h4>
       </div>
       <div class="icon">
@@ -17,8 +17,8 @@
   <div class="col-md-3 col-sm-6 col-xs-12">
     <div class="small-box bg-green">
       <div class="inner">
-        <input type="hidden" id="kegiatan" value="<?=$kegiatan ?>">
-        <h3><?=number_format($kegiatan, 0, ',', '.') ?></h3>
+        <input type="hidden" id="kegiatan" value="<?=$kegiatan->num_rows() ?>">
+        <h3><?=number_format($kegiatan->num_rows(), 0, ',', '.') ?></h3>
         <h4 class="text-bold">Kegiatan</h4>
       </div>
       <div class="icon">
@@ -31,8 +31,8 @@
   <div class="col-md-3 col-sm-6 col-xs-12">
     <div class="small-box bg-yellow">
       <div class="inner">
-        <input type="hidden" id="apbd" value="<?=$apbd ?>">
-        <h3><?=number_format($penyedia, 0, ',', '.') ?></h3>
+        <input type="hidden" id="penyedia" value="<?=$penyedia->num_rows() ?>">
+        <h3><?=number_format($penyedia->num_rows(), 0, ',', '.') ?></h3>
         <h4 class="text-bold">Paket Penyedia</h4>
       </div>
       <div class="icon">
@@ -45,8 +45,8 @@
   <div class="col-md-3 col-sm-6 col-xs-12">
     <div class="small-box bg-red">
       <div class="inner">
-        <input type="hidden" id="apbn" value="<?=$apbn ?>">
-        <h3><?=number_format($swakelola, 0, ',', '.') ?></h3>
+        <input type="hidden" id="swakelola" value="<?=$swakelola->num_rows() ?>">
+        <h3><?=number_format($swakelola->num_rows(), 0, ',', '.') ?></h3>
         <h4 class="text-bold">Paket Swakelola</h4>
       </div>
       <div class="icon">
@@ -56,9 +56,9 @@
   </div>
 </div>
 
-<div class="box box-info collapsed-box box-solid">
+<div class="box box-info box-solid">
   <div class="box-header with-border">
-    <h3 class="box-title">BELANJA</h3>
+    <h3 class="box-title">ANGGARAN BELANJA</h3>
     <div class="box-tools pull-right">
       <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
       </button>
@@ -113,8 +113,36 @@
         <div class="small-box bg-red">
           <div class="inner">
             <input type="hidden" id="total_anggaran" value="<?=($belanja_pegawai+$belanja_barang_jasa+$belanja_modal) ?>">
-            <h3>Rp. <?=number_format(($belanja_pegawai+$belanja_barang_jasa+$belanja_modal), 0, ',', '.') ?>,-</h3>
+            <h3>Rp. <?=number_format($total_anggaran, 0, ',', '.') ?>,-</h3>
             <p>Total Anggaran</p>
+          </div>
+          <div class="icon">
+            <i class="fa fa-money"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- APBD -->
+      <div class="col-md-6 col-xs-12">
+        <div class="small-box bg-light-blue">
+          <div class="inner">
+            <input type="hidden" id="total_anggaran" value="<?=($belanja_pegawai+$belanja_barang_jasa+$belanja_modal) ?>">
+            <h3>Rp. <?=number_format($apbd, 0, ',', '.') ?>,-</h3>
+            <p>APBD</p>
+          </div>
+          <div class="icon">
+            <i class="fa fa-money"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- APBN -->
+      <div class="col-md-6 col-xs-12">
+        <div class="small-box bg-yellow">
+          <div class="inner">
+            <input type="hidden" id="total_anggaran" value="<?=($belanja_pegawai+$belanja_barang_jasa+$belanja_modal) ?>">
+            <h3>Rp. <?=number_format($apbn, 0, ',', '.') ?>,-</h3>
+            <p>APBN</p>
           </div>
           <div class="icon">
             <i class="fa fa-money"></i>
@@ -125,7 +153,7 @@
   </div>
 </div>
 
-<div class="box box-primary collapsed-box box-solid">
+<div class="box box-primary box-solid">
   <div class="box-header with-border">
     <h3 class="box-title">PAGU ANGGARAN</h3>
     <div class="box-tools pull-right">
@@ -183,7 +211,7 @@
   </div>
 </div>
 
-<div class="box box-success collapsed-box box-solid">
+<div class="box box-success box-solid">
   <div class="box-header with-border">
     <h3 class="box-title">RPP</h3>
     <div class="box-tools pull-right">
@@ -242,7 +270,7 @@
   </div>
 </div>
 
-<div class="box box-warning collapsed-box box-solid">
+<div class="box box-warning box-solid">
   <div class="box-header with-border">
     <h3 class="box-title">TRACKING JENIS PENGADAAN</h3>
     <div class="box-tools pull-right">
@@ -288,7 +316,7 @@
   </div>
 </div>
 
-<div class="box box-danger collapsed-box box-solid">
+<div class="box box-danger box-solid">
   <div class="box-header with-border">
     <h3 class="box-title">TRACKING METODE PEMILIHAN</h3>
     <div class="box-tools pull-right">

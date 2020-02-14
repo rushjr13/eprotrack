@@ -76,13 +76,10 @@
       </section>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
-      <div class="container">
-        <div class="pull-right hidden-xs">
-          e-<b>Protrack</b>+ 2020 || <b>Versi</b> 1.0.0
-        </div>
-        <strong>Copyright &copy; 2020 <a href="#">Biro Pengadaan Sekretariat Daerah Provinsi Gorontalo</a></strong>
+      <div class="pull-right hidden-xs">
+        e-<b>Protrack</b>+ 2020 || <b>Versi</b> 1.0.0
       </div>
-      <!-- /.container -->
+      <strong>Copyright &copy; 2020 <a href="#">Biro Pengadaan Sekretariat Daerah Provinsi Gorontalo</a></strong>
     </footer>
   </div>
   <!-- ./wrapper -->

@@ -52,7 +52,7 @@
   <div class="wrapper">
     <header class="main-header">
       <nav class="navbar navbar-static-top">
-        <div class="container">
+        <!-- <div class="container"> -->
           <div class="navbar-header">
             <a href="<?=base_url() ?>" class="navbar-brand"><span><img src="<?=base_url('uploads/icon.png') ?>" width="25"> e-<b>Protrack</b>+</span></a>
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
@@ -169,13 +169,13 @@
             </ul>
           </div>
           <!-- /.navbar-custom-menu -->
-        </div>
+        <!-- </div> -->
         <!-- /.container-fluid -->
       </nav>
     </header>
     <!-- Full Width Column -->
     <div class="content-wrapper">
-      <div class="container">
+      <!-- <div class="container"> -->
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
@@ -190,21 +190,21 @@
 
         <!-- Main content -->
         <section class="content">
-        <?= $this->session->flashdata('info'); ?>
-        <?=$contents ?>
-      </section>
+          <?= $this->session->flashdata('info'); ?>
+          <?=$contents ?>
+        </section>
         <!-- /.content -->
-      </div>
+      <!-- </div> -->
       <!-- /.container -->
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
-      <div class="container">
+      <!-- <div class="container"> -->
         <div class="pull-right hidden-xs">
           e-<b>Protrack</b>+ 2020 || <b>Versi</b> 1.0.0
         </div>
         <strong>Copyright &copy; 2020 <a href="#">Biro Pengadaan Sekretariat Daerah Provinsi Gorontalo</a></strong>
-      </div>
+      <!-- </div> -->
       <!-- /.container -->
     </footer>
   </div>

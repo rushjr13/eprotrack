@@ -112,4 +112,30 @@ class Rup_m extends CI_Model {
 		return $this->db->get();
 	}
 
+	public function sb_penyedia($sb=null)
+	{
+		$this->db->select('*');
+		$this->db->from('penyedia');
+		if($sb!=null){
+			$this->db->where('sumber_dana', $sb);
+		}
+		$this->db->order_by('id_satker', 'asc');
+		$this->db->order_by('status_aktif', 'desc');
+		$this->db->order_by('status_umumkan', 'desc');
+		return $this->db->get();
+	}
+
+	public function sb_swakelola($sb=null)
+	{
+		$this->db->select('*');
+		$this->db->from('swakelola');
+		if($sb!=null){
+			$this->db->where('sumber_dana', $sb);
+		}
+		$this->db->order_by('id_satker', 'asc');
+		$this->db->order_by('status_aktif', 'desc');
+		$this->db->order_by('status_umumkan', 'desc');
+		return $this->db->get();
+	}
+
 }
