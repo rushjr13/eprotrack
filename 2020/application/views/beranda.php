@@ -1,61 +1,3 @@
-<div class="row">
-  <!-- PROGRAM -->
-  <div class="col-md-3 col-sm-6 col-xs-12">
-    <div class="small-box bg-light-blue">
-      <div class="inner">
-        <input type="hidden" id="program" value="<?=$program->num_rows() ?>">
-        <h3><?=number_format($program->num_rows(), 0, ',', '.') ?></h3>
-        <h4 class="text-bold">Program</h4>
-      </div>
-      <div class="icon">
-        <i class="fa fa-list"></i>
-      </div>
-    </div>
-  </div>
-
-  <!-- KEGIATAN -->
-  <div class="col-md-3 col-sm-6 col-xs-12">
-    <div class="small-box bg-green">
-      <div class="inner">
-        <input type="hidden" id="kegiatan" value="<?=$kegiatan->num_rows() ?>">
-        <h3><?=number_format($kegiatan->num_rows(), 0, ',', '.') ?></h3>
-        <h4 class="text-bold">Kegiatan</h4>
-      </div>
-      <div class="icon">
-        <i class="fa fa-list"></i>
-      </div>
-    </div>
-  </div>
-
-  <!-- APBD -->
-  <div class="col-md-3 col-sm-6 col-xs-12">
-    <div class="small-box bg-yellow">
-      <div class="inner">
-        <input type="hidden" id="penyedia" value="<?=$penyedia->num_rows() ?>">
-        <h3><?=number_format($penyedia->num_rows(), 0, ',', '.') ?></h3>
-        <h4 class="text-bold">Paket Penyedia</h4>
-      </div>
-      <div class="icon">
-        <i class="fa fa-cubes"></i>
-      </div>
-    </div>
-  </div>
-
-  <!-- APBN -->
-  <div class="col-md-3 col-sm-6 col-xs-12">
-    <div class="small-box bg-red">
-      <div class="inner">
-        <input type="hidden" id="swakelola" value="<?=$swakelola->num_rows() ?>">
-        <h3><?=number_format($swakelola->num_rows(), 0, ',', '.') ?></h3>
-        <h4 class="text-bold">Paket Swakelola</h4>
-      </div>
-      <div class="icon">
-        <i class="fa fa-cubes"></i>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="box box-info box-solid">
   <div class="box-header with-border">
     <h3 class="box-title">ANGGARAN BELANJA</h3>
@@ -66,50 +8,89 @@
   </div>
   <div class="box-body">
     <div class="row" style="margin-bottom: 0px">
-      <!-- BELANJA PEGAWAI -->
-      <div class="col-md-4 col-xs-12">
+      <div class="col-md-6 col-xs-12">
+        Grafik Pie Program dan Kegiatan
+      </div>
+      <div class="col-md-3 col-xs-12">
+        <!-- PROGRAM -->
         <div class="small-box bg-light-blue">
           <div class="inner">
-            <input type="hidden" id="belanja_pegawai" value="<?=$belanja_pegawai ?>">
-            <h3>Pegawai</3>
-            <h4 class="text-bold">Rp. <?=number_format($belanja_pegawai, 0, ',', '.') ?>,-</h4>
+            <input type="hidden" id="program" value="<?=$program->num_rows() ?>">
+            <h3><?=number_format($program->num_rows(), 0, ',', '.') ?></h3>
+            <h4 class="text-bold">Program</h4>
           </div>
           <div class="icon">
-            <i class="fa fa-users"></i>
+            <i class="fa fa-list"></i>
+          </div>
+        </div>
+        <!-- KEGIATAN -->
+        <div class="small-box bg-green">
+          <div class="inner">
+            <input type="hidden" id="kegiatan" value="<?=$kegiatan->num_rows() ?>">
+            <h3><?=number_format($kegiatan->num_rows(), 0, ',', '.') ?></h3>
+            <h4 class="text-bold">Kegiatan</h4>
+          </div>
+          <div class="icon">
+            <i class="fa fa-list"></i>
           </div>
         </div>
       </div>
 
-      <!-- BELANJA BARANG / JASA -->
-      <div class="col-md-4 col-xs-12">
-        <div class="small-box bg-green">
+      <div class="col-md-3 col-xs-12">
+        <!-- APBD -->
+        <div class="small-box bg-yellow">
           <div class="inner">
-            <input type="hidden" id="belanja_barang_jasa" value="<?=$belanja_barang_jasa ?>">
-            <h3>Barang / Jasa</h3>
-            <h4 class="text-bold">Rp. <?=number_format($belanja_barang_jasa, 0, ',', '.') ?>,-</h4>
+            <input type="hidden" id="penyedia" value="<?=$penyedia->num_rows() ?>">
+            <h3><?=number_format($penyedia->num_rows(), 0, ',', '.') ?></h3>
+            <h4 class="text-bold">Paket Penyedia</h4>
+          </div>
+          <div class="icon">
+            <i class="fa fa-cubes"></i>
+          </div>
+        </div>
+        <!-- APBN -->
+        <div class="small-box bg-red">
+          <div class="inner">
+            <input type="hidden" id="swakelola" value="<?=$swakelola->num_rows() ?>">
+            <h3><?=number_format($swakelola->num_rows(), 0, ',', '.') ?></h3>
+            <h4 class="text-bold">Paket Swakelola</h4>
           </div>
           <div class="icon">
             <i class="fa fa-cubes"></i>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- BELANJA MODAL -->
-      <div class="col-md-4 col-xs-12">
-        <div class="small-box bg-yellow">
-          <div class="inner">
-            <input type="hidden" id="belanja_modal" value="<?=$belanja_modal ?>">
-            <h3>Modal</h3>
-            <h4 class="text-bold">Rp. <?=number_format($belanja_modal, 0, ',', '.') ?>,-</h4>
-          </div>
-          <div class="icon">
-            <i class="fa fa-archive"></i>
-          </div>
-        </div>
+    <div class="row">
+      <div class="col-md-6 col-xs-12">
       </div>
 
-      <!-- TOTAL ANGGARAN -->
-      <div class="col-md-12 col-xs-12">
+      <div class="col-md-6 col-xs-12">
+        <div class="box box-primary">
+          <div class="box-body table-responsive">
+            <table class="table table-sm" width="100%">
+              <tbody>
+                <tr class="bg-light-blue">
+                  <input type="hidden" id="belanja_pegawai" value="<?=$belanja_pegawai ?>">
+                  <th style="vertical-align: middle" width="50%"><i class="fa fa-users"></i> Belanja Pegawai</th>
+                  <th class="text-right" style="vertical-align: middle" width="50%">Rp. <?=number_format($belanja_pegawai, 0, ',', '.') ?>,-</th>
+                </tr>
+                <tr class="bg-green">
+                  <input type="hidden" id="belanja_barang_jasa" value="<?=$belanja_barang_jasa ?>">
+                  <th style="vertical-align: middle" width="50%"><i class="fa fa-cubes"></i> Barang / Jasa</th>
+                  <th class="text-right" style="vertical-align: middle" width="50%">Rp. <?=number_format($belanja_barang_jasa, 0, ',', '.') ?>,-</th>
+                </tr>
+                <tr class="bg-red">
+                  <input type="hidden" id="belanja_modal" value="<?=$belanja_modal ?>">
+                  <th style="vertical-align: middle" width="50%"><i class="fa fa-archive"></i> Modal</th>
+                  <th class="text-right" style="vertical-align: middle" width="50%">Rp. <?=number_format($belanja_modal, 0, ',', '.') ?>,-</th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- TOTAL ANGGARAN -->
         <div class="small-box bg-red">
           <div class="inner">
             <input type="hidden" id="total_anggaran" value="<?=($belanja_pegawai+$belanja_barang_jasa+$belanja_modal) ?>">
@@ -121,6 +102,7 @@
           </div>
         </div>
       </div>
+
 
       <!-- APBD -->
       <div class="col-md-6 col-xs-12">
