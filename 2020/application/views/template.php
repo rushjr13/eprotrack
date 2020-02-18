@@ -241,9 +241,14 @@
 <script src="<?=base_url()?>assets/bower_components/raphael/raphael.min.js"></script>
 <script src="<?=base_url()?>assets/bower_components/morris.js/morris.min.js"></script>
 <script src="<?=base_url()?>assets/bower_components/chart.js/Chart.js"></script>
+<script src="<?=base_url()?>assets/bower_components/Flot/jquery.flot.js"></script>
+<script src="<?=base_url()?>assets/bower_components/Flot/jquery.flot.resize.js"></script>
+<script src="<?=base_url()?>assets/bower_components/Flot/jquery.flot.pie.js"></script>
+<script src="<?=base_url()?>assets/bower_components/Flot/jquery.flot.categories.js"></script>
+<script src="<?=base_url()?>assets/bower_components/jquery-knob/js/jquery.knob.js"></script>
+<script src="<?=base_url()?>assets/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
 <script src="<?=base_url()?>assets/bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
 <script src="<?=base_url()?>assets/plugins/timepicker/bootstrap-timepicker.min.js"></script>
-<script src="<?=base_url()?>assets/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
 <script src="<?=base_url()?>assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script src="<?=base_url()?>assets/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
 <script src="<?=base_url()?>assets/plugins/iCheck/icheck.min.js"></script>
@@ -392,39 +397,118 @@
     })
   })
 
-  //-------------
-    //- PIE CHART -
-    //-------------
-    // Get context with jQuery - using jQuery's .get() method.
-    var jlh_paket_penyedia = $('#jlh_paket_penyedia').val()
-    var total_anggaran_penyedia = $('#total_anggaran_penyedia').val()
-    var jlh_paket_swakelola = $('#jlh_paket_swakelola').val()
-    var total_anggaran_swakelola = $('#total_anggaran_swakelola').val()
-    //BAR CHART
-    var bar = new Morris.Bar({
-      element: 'bar-chartPaket',
+  // DONAT CHART FLOT
+  var program = $('#program').val()
+  var kegiatan = $('#kegiatan').val()
+  var penyedia = $('#penyedia').val()
+  var swakelola = $('#swakelola').val()
+  var belanja_pegawai = $('#belanja_pegawai').val()
+  var belanja_barang_jasa = $('#belanja_barang_jasa').val()
+  var belanja_modal = $('#belanja_modal').val()
+  // PROGRAM KEGIATAN
+  var donutDataprogkeg = [
+      { label: 'Program', data: program, color: '#3c8dbc' },
+      { label: 'Kegiatan', data: kegiatan, color: '#00a65a' },
+    ]
+  $.plot('#donut-chart-progkeg', donutDataprogkeg, {
+    series: {
+      pie: {
+        show       : true,
+        radius     : 1,
+        innerRadius: 0.5,
+        label      : {
+          show     : true,
+          radius   : 2 / 3,
+          formatter: labelFormatter,
+          threshold: 0.1
+        }
+
+      }
+    },
+    legend: {
+      show: false
+    }
+  })
+  // PROGRAM KEGIATAN
+  var donutDatapyswk = [
+      { label: 'Penyedia', data: penyedia, color: '#f39c12' },
+      { label: 'Swakelola', data: swakelola, color: '#f56954' },
+    ]
+  $.plot('#donut-chart-pyswk', donutDatapyswk, {
+    series: {
+      pie: {
+        show       : true,
+        radius     : 1,
+        innerRadius: 0.5,
+        label      : {
+          show     : true,
+          radius   : 2 / 3,
+          formatter: labelFormatter,
+          threshold: 0.1
+        }
+
+      }
+    },
+    legend: {
+      show: false
+    }
+  })
+  // BELANJA
+  var donutDatabelanja = [
+      { label: 'Pegawai', data: belanja_pegawai, color: '#00a65a' },
+      { label: 'Barang Jasa', data: belanja_barang_jasa, color: '#f39c12' },
+      { label: 'Modal', data: belanja_modal, color: '#f56954' },
+    ]
+  $.plot('#donut-chart-belanja', donutDatabelanja, {
+    series: {
+      pie: {
+        show       : true,
+        radius     : 1,
+        innerRadius: 0.5,
+        label      : {
+          show     : true,
+          radius   : 2 / 3,
+          formatter: labelFormatter,
+          threshold: 0.1
+        }
+
+      }
+    },
+    legend: {
+      show: false
+    }
+  })
+  // END DONAT CHART FLOT
+
+  // CUSTOM LABELFORMATER
+  function labelFormatter(label, series) {
+    return '<div style="font-size:13px; text-align:center; padding:2px; color: #fff; font-weight: 600;">'
+      + label
+      + '<br>'
+      + Math.round(series.percent) + '%</div>'
+  }
+
+  //INITIALIZE SPARKLINE CHARTS
+  "use strict";
+  var apbd = $('#apbd').val();
+  var apbn = $('#apbn').val();
+  var jlhapb = $('#jlhapb').val();
+  console.log(jlhapb);
+  var persen_apbd = Math.round((apbd/jlhapb)*100);
+  var persen_apbn = Math.round((apbn/jlhapb)*100);
+  var bar = new Morris.Bar({
+      element: 'bar-chart-apb',
       resize: true,
       data: [
-        {y: 'Penyedia', a: jlh_paket_penyedia},
-        {y: 'Swakelola', a: jlh_paket_swakelola}
+        {y: 'APBD', a: persen_apbd},
+        {y: 'APBN', a: persen_apbn},
       ],
       barColors: ['#00a65a'],
       xkey: 'y',
       ykeys: ['a'],
-      labels: ['Paket'],
+      labels: ['%'],
       hideHover: 'auto'
     });
-    var donut = new Morris.Donut({
-      element: 'sales-chartAnggaran',
-      resize: true,
-      colors: ["#3c8dbc", "#f56954"],
-      data: [
-        {label: "Penyedia", value: total_anggaran_penyedia},
-        {label: "Swakelola", value: total_anggaran_swakelola}
-      ],
-      hideHover: 'auto'
-    });
-
 
 </script>
 </body>

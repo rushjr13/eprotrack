@@ -2,7 +2,7 @@
   // PENYEDIA
   $no_paket_penyedia = 1;
   $total_anggaran_penyedia = 0;
-  foreach ($penyedia as $py) {
+  foreach ($penyedia->result_array() as $py) {
     $jlh_paket_penyedia = $no_paket_penyedia++;
     $total_anggaran_penyedia = $total_anggaran_penyedia+$py['pagu_rup'];
   }
@@ -10,7 +10,7 @@
   // SWAKELOLA
   $no_paket_swakelola = 1;
   $total_anggaran_swakelola = 0;
-  foreach ($swakelola as $swk) {
+  foreach ($swakelola->result_array() as $swk) {
     $jlh_paket_swakelola = $no_paket_swakelola++;
     $total_anggaran_swakelola = $total_anggaran_swakelola+$swk['pagu_rup'];
   }

@@ -68,6 +68,8 @@ $route['rekapitulasi'] = 'referensi/rekapitulasi';
 $route['rekapitulasi/jp/edit/(:num)'] = 'referensi/rekapitulasi_jp/$1';
 $route['rekapitulasi/mp/edit/(:num)'] = 'referensi/rekapitulasi_mp/$1';
 
+$route['referensi/edit/satker/(:any)'] = 'referensi/edit_satker/$1';
+
 // UPDATE
 $route['update/penyedia/proses'] = 'update/penyedia_proses';
 $route['update/swakelola/proses'] = 'update/swakelola_proses';

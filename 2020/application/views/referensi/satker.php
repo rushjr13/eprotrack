@@ -8,6 +8,7 @@
 			<th colspan="2" class="text-center" style="vertical-align: middle">PENYEDIA</th>
 			<th colspan="2" class="text-center" style="vertical-align: middle">SWAKELOLA</th>
 			<th colspan="2" class="text-center" style="vertical-align: middle">TOTAL</th>
+			<th rowspan="2" class="text-center" style="vertical-align: middle">OPSI</th>
 		</tr>
 		<tr>
 			<th class="text-center" style="vertical-align: middle">PAKET</th>
@@ -55,6 +56,9 @@
 				<td class="text-right" style="vertical-align: middle" width="5%"><?=number_format($jlh_pagu_swakelola_satker, 0, ',', '.') ?></td>
 				<td class="text-center" style="vertical-align: middle" width="5%"><?=$jlh_paket_satker ?></td>
 				<td class="text-right" style="vertical-align: middle" width="5%"><?=number_format($jlh_pagu_satker, 0, ',', '.') ?></td>
+				<td class="text-center" style="vertical-align: middle" width="5%">
+					<a href="<?=base_url('referensi/edit/satker/'.$sk['kode_satker_asli']) ?>" class="btn btn-flat btn-sm btn-info" data-toggle="tooltip" title="Ubah Anggaran SIMDA"><i class="fa fa-edit"></i></a>
+				</td>
 			</tr>
 		<?php endforeach ?>
 	</tbody>

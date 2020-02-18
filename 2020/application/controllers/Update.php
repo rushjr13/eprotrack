@@ -232,14 +232,12 @@ class Update extends CI_Controller {
 					'id_satker'=>$py['id_satker'],
 					'kode_satker_asli'=>$py['kode_satker_asli'],
 					'nama_satker'=>$py['nama_satker'],
-					'pagu_simda'=>0
 				];
 				$this->db->insert('satker', $data);
 			}else{
 				$data = [
 					'id_satker'=>$py['id_satker'],
 					'nama_satker'=>$py['nama_satker'],
-					'pagu_simda'=>0
 				];
 				$this->db->set($data);
 				$this->db->where('kode_satker_asli', $py['kode_satker_asli']);
@@ -306,14 +304,12 @@ class Update extends CI_Controller {
 					'id_satker'=>$swk['id_satker'],
 					'kode_satker_asli'=>$swk['kode_satker_asli'],
 					'nama_satker'=>$swk['nama_satker'],
-					'pagu_simda'=>0
 				];
 				$this->db->insert('satker', $data);
 			}else{
 				$data = [
 					'id_satker'=>$swk['id_satker'],
 					'nama_satker'=>$swk['nama_satker'],
-					'pagu_simda'=>0
 				];
 				$this->db->set($data);
 				$this->db->where('kode_satker_asli', $swk['kode_satker_asli']);

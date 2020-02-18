@@ -10,9 +10,9 @@ class Rup_m extends CI_Model {
 		if($kode_rup!=null){
 			$this->db->where('kode_rup', $kode_rup);
 		}
+		$this->db->where('status_aktif', 'ya');
+		$this->db->where('status_umumkan', 'sudah');
 		$this->db->order_by('id_satker', 'asc');
-		$this->db->order_by('status_aktif', 'desc');
-		$this->db->order_by('status_umumkan', 'desc');
 		return $this->db->get();
 	}
 
@@ -23,9 +23,9 @@ class Rup_m extends CI_Model {
 		if($kode_rup!=null){
 			$this->db->where('kode_rup', $kode_rup);
 		}
+		$this->db->where('status_aktif', 'ya');
+		$this->db->where('status_umumkan', 'sudah');
 		$this->db->order_by('id_satker', 'asc');
-		$this->db->order_by('status_aktif', 'desc');
-		$this->db->order_by('status_umumkan', 'desc');
 		return $this->db->get();
 	}
 

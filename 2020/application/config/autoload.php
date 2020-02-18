@@ -137,4 +137,5 @@ $autoload['model'] = array(
 	'Pengguna_m'=>'pengguna',
 	'Pkr_m'=>'pkr',
 	'Rup_m'=>'rup',
+	'Simda_m'=>'simda',
 );

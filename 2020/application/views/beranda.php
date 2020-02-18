@@ -1,133 +1,141 @@
-<div class="box box-info box-solid">
+<div class="row">
+  <div class="col-md-6 col-xs-12">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">PROGRAM & KEGIATAN</h3>
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="box-body">
+        <div class="row" style="margin-bottom: 0px">
+          <div class="col-md-6 col-xs-12">
+            <div id="donut-chart-progkeg" style="height: 250px;"></div>
+          </div>
+          <div class="col-md-6 col-xs-12">
+            <!-- PROGRAM -->
+            <div class="small-box bg-light-blue">
+              <div class="inner">
+                <input type="hidden" id="program" value="<?=$program->num_rows() ?>">
+                <h3><?=number_format($program->num_rows(), 0, ',', '.') ?></h3>
+                <h4 class="text-bold">Program</h4>
+              </div>
+              <div class="icon">
+                <i class="fa fa-list"></i>
+              </div>
+            </div>
+            <!-- KEGIATAN -->
+            <div class="small-box bg-green">
+              <div class="inner">
+                <input type="hidden" id="kegiatan" value="<?=$kegiatan->num_rows() ?>">
+                <h3><?=number_format($kegiatan->num_rows(), 0, ',', '.') ?></h3>
+                <h4 class="text-bold">Kegiatan</h4>
+              </div>
+              <div class="icon">
+                <i class="fa fa-list"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-xs-12">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">PAKET</h3>
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+          </button>
+        </div>
+      </div>
+      <div class="box-body">
+        <div class="row" style="margin-bottom: 0px">
+          <div class="col-md-6 col-xs-12">
+            <div id="donut-chart-pyswk" style="height: 250px;"></div>
+          </div>
+
+          <div class="col-md-6 col-xs-12">
+            <!-- APBD -->
+            <div class="small-box bg-yellow">
+              <div class="inner">
+                <input type="hidden" id="penyedia" value="<?=$penyedia->num_rows() ?>">
+                <h3><?=number_format($penyedia->num_rows(), 0, ',', '.') ?></h3>
+                <h4 class="text-bold">Paket Penyedia</h4>
+              </div>
+              <div class="icon">
+                <i class="fa fa-cubes"></i>
+              </div>
+            </div>
+            <!-- APBN -->
+            <div class="small-box bg-red">
+              <div class="inner">
+                <input type="hidden" id="swakelola" value="<?=$swakelola->num_rows() ?>">
+                <h3><?=number_format($swakelola->num_rows(), 0, ',', '.') ?></h3>
+                <h4 class="text-bold">Paket Swakelola</h4>
+              </div>
+              <div class="icon">
+                <i class="fa fa-cubes"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="box box-primary">
   <div class="box-header with-border">
     <h3 class="box-title">ANGGARAN BELANJA</h3>
     <div class="box-tools pull-right">
-      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
       </button>
     </div>
   </div>
   <div class="box-body">
-    <div class="row" style="margin-bottom: 0px">
-      <div class="col-md-6 col-xs-12">
-        Grafik Pie Program dan Kegiatan
-      </div>
-      <div class="col-md-3 col-xs-12">
-        <!-- PROGRAM -->
-        <div class="small-box bg-light-blue">
-          <div class="inner">
-            <input type="hidden" id="program" value="<?=$program->num_rows() ?>">
-            <h3><?=number_format($program->num_rows(), 0, ',', '.') ?></h3>
-            <h4 class="text-bold">Program</h4>
-          </div>
-          <div class="icon">
-            <i class="fa fa-list"></i>
-          </div>
-        </div>
-        <!-- KEGIATAN -->
-        <div class="small-box bg-green">
-          <div class="inner">
-            <input type="hidden" id="kegiatan" value="<?=$kegiatan->num_rows() ?>">
-            <h3><?=number_format($kegiatan->num_rows(), 0, ',', '.') ?></h3>
-            <h4 class="text-bold">Kegiatan</h4>
-          </div>
-          <div class="icon">
-            <i class="fa fa-list"></i>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-3 col-xs-12">
-        <!-- APBD -->
-        <div class="small-box bg-yellow">
-          <div class="inner">
-            <input type="hidden" id="penyedia" value="<?=$penyedia->num_rows() ?>">
-            <h3><?=number_format($penyedia->num_rows(), 0, ',', '.') ?></h3>
-            <h4 class="text-bold">Paket Penyedia</h4>
-          </div>
-          <div class="icon">
-            <i class="fa fa-cubes"></i>
-          </div>
-        </div>
-        <!-- APBN -->
-        <div class="small-box bg-red">
-          <div class="inner">
-            <input type="hidden" id="swakelola" value="<?=$swakelola->num_rows() ?>">
-            <h3><?=number_format($swakelola->num_rows(), 0, ',', '.') ?></h3>
-            <h4 class="text-bold">Paket Swakelola</h4>
-          </div>
-          <div class="icon">
-            <i class="fa fa-cubes"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div class="row">
-      <div class="col-md-6 col-xs-12">
+      <div class="col-md-3 col-xs-12">
+        <div id="donut-chart-belanja" style="height: 265px;"></div>
+      </div>
+      <div class="col-md-3 col-xs-12">
+        <div class="chart" id="bar-chart-apb" style="height: 265px;"></div>
       </div>
 
       <div class="col-md-6 col-xs-12">
-        <div class="box box-primary">
-          <div class="box-body table-responsive">
-            <table class="table table-sm" width="100%">
-              <tbody>
-                <tr class="bg-light-blue">
-                  <input type="hidden" id="belanja_pegawai" value="<?=$belanja_pegawai ?>">
-                  <th style="vertical-align: middle" width="50%"><i class="fa fa-users"></i> Belanja Pegawai</th>
-                  <th class="text-right" style="vertical-align: middle" width="50%">Rp. <?=number_format($belanja_pegawai, 0, ',', '.') ?>,-</th>
-                </tr>
-                <tr class="bg-green">
-                  <input type="hidden" id="belanja_barang_jasa" value="<?=$belanja_barang_jasa ?>">
-                  <th style="vertical-align: middle" width="50%"><i class="fa fa-cubes"></i> Barang / Jasa</th>
-                  <th class="text-right" style="vertical-align: middle" width="50%">Rp. <?=number_format($belanja_barang_jasa, 0, ',', '.') ?>,-</th>
-                </tr>
-                <tr class="bg-red">
-                  <input type="hidden" id="belanja_modal" value="<?=$belanja_modal ?>">
-                  <th style="vertical-align: middle" width="50%"><i class="fa fa-archive"></i> Modal</th>
-                  <th class="text-right" style="vertical-align: middle" width="50%">Rp. <?=number_format($belanja_modal, 0, ',', '.') ?>,-</th>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+        <div class="callout callout-success" style="margin-bottom: 3px">
+          <input type="hidden" id="belanja_pegawai" value="<?=$belanja_pegawai ?>">
+          <h4 style="margin-bottom: 0px"><i class="fa fa-fw fa-users"></i> Belanja Pegawai <span class="pull-right">Rp. <?=number_format($belanja_pegawai, 0, ',', '.') ?>,-</span></h4>
         </div>
-        <!-- TOTAL ANGGARAN -->
-        <div class="small-box bg-red">
-          <div class="inner">
-            <input type="hidden" id="total_anggaran" value="<?=($belanja_pegawai+$belanja_barang_jasa+$belanja_modal) ?>">
-            <h3>Rp. <?=number_format($total_anggaran, 0, ',', '.') ?>,-</h3>
-            <p>Total Anggaran</p>
-          </div>
-          <div class="icon">
-            <i class="fa fa-money"></i>
-          </div>
+        <div class="callout callout-warning" style="margin-bottom: 3px">
+          <input type="hidden" id="belanja_barang_jasa" value="<?=$belanja_barang_jasa ?>">
+          <h4 style="margin-bottom: 0px"><i class="fa fa-fw fa-cubes"></i> Belanja Barang / Jasa <span class="pull-right">Rp. <?=number_format($belanja_barang_jasa, 0, ',', '.') ?>,-</span></h4>
         </div>
-      </div>
-
-
-      <!-- APBD -->
-      <div class="col-md-6 col-xs-12">
-        <div class="small-box bg-light-blue">
-          <div class="inner">
-            <input type="hidden" id="total_anggaran" value="<?=($belanja_pegawai+$belanja_barang_jasa+$belanja_modal) ?>">
-            <h3>Rp. <?=number_format($apbd, 0, ',', '.') ?>,-</h3>
-            <p>APBD</p>
-          </div>
-          <div class="icon">
-            <i class="fa fa-money"></i>
-          </div>
+        <div class="callout callout-danger" style="margin-bottom: 3px">
+          <input type="hidden" id="belanja_modal" value="<?=$belanja_modal ?>">
+          <h4 style="margin-bottom: 0px"><i class="fa fa-fw fa-archive"></i> Belanja Modal <span class="pull-right">Rp. <?=number_format($belanja_modal, 0, ',', '.') ?>,-</span></h4>
         </div>
-      </div>
-
-      <!-- APBN -->
-      <div class="col-md-6 col-xs-12">
-        <div class="small-box bg-yellow">
-          <div class="inner">
-            <input type="hidden" id="total_anggaran" value="<?=($belanja_pegawai+$belanja_barang_jasa+$belanja_modal) ?>">
-            <h3>Rp. <?=number_format($apbn, 0, ',', '.') ?>,-</h3>
-            <p>APBN</p>
+        <div class="callout callout-info" style="margin-bottom: 3px">
+          <input type="hidden" id="total_anggaran" value="<?=($belanja_pegawai+$belanja_barang_jasa+$belanja_modal) ?>">
+          <h4 style="margin-bottom: 0px"><i class="fa fa-fw fa-money"></i> Total Anggaran <span class="pull-right">Rp. <?=number_format(($belanja_pegawai+$belanja_barang_jasa+$belanja_modal), 0, ',', '.') ?>,-</span></h4>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-xs-12">
+            <div class="callout callout-success" style="margin-bottom: 3px">
+              <input type="hidden" id="apbd" value="<?=$apbd ?>">
+              <h4 style="margin-bottom: 0px"><i class="fa fa-fw fa-money"></i> APBD</h4>
+              <p>Rp. <?=number_format($apbd, 0, ',', '.') ?>,-</p>
+            </div>
           </div>
-          <div class="icon">
-            <i class="fa fa-money"></i>
+          <div class="col-md-6 col-xs-12">
+            <div class="callout callout-danger" style="margin-bottom: 3px">
+              <input type="hidden" id="apbn" value="<?=$apbn ?>">
+              <input type="hidden" id="jlhapb" value="<?=$apbd+$apbn ?>">
+              <h4 style="margin-bottom: 0px"><i class="fa fa-fw fa-money"></i> APBN</h4>
+              <p>Rp. <?=number_format($apbn, 0, ',', '.') ?>,-</p>
+            </div>
           </div>
         </div>
       </div>

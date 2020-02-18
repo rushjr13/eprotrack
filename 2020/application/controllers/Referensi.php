@@ -29,6 +29,31 @@ class Referensi extends CI_Controller {
 		$this->template->load('template', 'referensi/index', $data);
 	}
 
+	public function edit_satker($kode_satker_asli=null)
+	{
+		// UMUM
+		$username = $this->session->userdata('username');
+		if($username){
+			$data['pengguna_masuk'] = $this->pengguna->get($username)->row_array();
+		}else{
+			$data['pengguna_masuk'] = "";
+		}
+
+		// KHUSUS
+		if($kode_satker_asli==null){
+			$this->session->set_flashdata('info', '<div class="callout callout-danger">
+	          																	<h4><i class="icon fa fa-ban"></i> Akses Ditolak!</h4>
+																                <p>Tidak Ada SKPD yang dipilih.</p>
+																              </div>');
+			redirect('referensi');
+		}else{
+			$data['judul'] = "Master";
+			$data['subjudul'] = "Referensi";
+			$data['satker'] = $this->rup->satker($kode_satker_asli)->row_array();
+			$this->template->load('template', 'referensi/form_skpd', $data);
+		}
+	}
+
 	public function rekapitulasi()
 	{
 		// UMUM
@@ -111,9 +136,24 @@ class Referensi extends CI_Controller {
 			$this->db->update('mp');
 			$this->session->set_flashdata('info', '<div class="callout callout-success">
 	          																	<h4><i class="icon fa fa-check"></i> Proses Berhasil!</h4>
-																                <p>Metode Pelilihan <strong>'.$post['nama_mp'].'</strong> telah diperbarui</p>
+																                <p>Metode Pemilihan <strong>'.$post['nama_mp'].'</strong> telah diperbarui</p>
 																              </div>');
 			redirect('rekapitulasi');
+		}else if(isset($post['simpan_simda'])){
+			$data_simda = [
+				'pegawai'=>$post['pegawai'],
+				'barang_jasa'=>$post['barang_jasa'],
+				'modal'=>$post['modal'],
+				'pagu_simda'=>$post['pegawai']+$post['barang_jasa']+$post['modal'],
+			];
+			$this->db->set($data_simda);
+			$this->db->where('kode_satker_asli', $post['kode_satker_asli']);
+			$this->db->update('satker');
+			$this->session->set_flashdata('info', '<div class="callout callout-success">
+	          																	<h4><i class="icon fa fa-check"></i> Proses Berhasil!</h4>
+																                <p>Anggaran SIMDA <strong>'.$post['nama_satker'].'</strong> telah diperbarui</p>
+																              </div>');
+			redirect('referensi');
 		}
 	}
 

@@ -125,9 +125,18 @@ class Beranda extends CI_Controller {
 		$data['apbn'] = $pagu_apbn_penyedia+$pagu_apbn_swakelola;
 
 		// BELANJA
-		$data['belanja_pegawai'] = 0;
-		$data['belanja_barang_jasa'] = 0;
-		$data['belanja_modal'] = 0;
+		$simda_skpd = $this->simda->skpd()->result_array();
+		$belanja_pegawai = 0;
+		$belanja_barang_jasa = 0;
+		$belanja_modal = 0;
+		foreach ($simda_skpd as $skpd) {
+			$belanja_pegawai = $belanja_pegawai+$skpd['pegawai'];
+			$belanja_barang_jasa = $belanja_barang_jasa+$skpd['barang_jasa'];
+			$belanja_modal = $belanja_modal+$skpd['modal'];
+		}
+		$data['belanja_pegawai'] = $belanja_pegawai;
+		$data['belanja_barang_jasa'] = $belanja_barang_jasa;
+		$data['belanja_modal'] = $belanja_modal;
 
 		// SATKER
 		$data['satker'] = $this->rup->satker();
