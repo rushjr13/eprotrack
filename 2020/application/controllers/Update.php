@@ -57,6 +57,54 @@ class Update extends CI_Controller {
 
 		// LOOPING DATA JSON DAN SIMPAN DI TABEL
 		foreach ($penyedia as $py) {
+			switch ($py['jenis_pengadaan']) {
+				case 'Barang;Barang':
+					$jenis_pengadaan = 'Barang';
+					break;
+				case 'Barang;Barang;Barang':
+					$jenis_pengadaan = 'Barang';
+					break;
+				case 'Barang;Barang;Barang;Barang':
+					$jenis_pengadaan = 'Barang';
+					break;
+				case 'Barang;Barang;Barang;Barang;Barang':
+					$jenis_pengadaan = 'Barang';
+					break;
+				case 'Barang;Barang;Barang;Barang;Barang;Barang':
+					$jenis_pengadaan = 'Barang';
+					break;
+				case 'Jasa Konsultansi;Jasa Konsultansi':
+					$jenis_pengadaan = 'Jasa Konsultansi';
+					break;
+				case 'Jasa Lainnya;Barang;Barang;Barang;Barang;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Barang;Barang;Barang;Barang;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya':
+					$jenis_pengadaan = 'Jasa Lainnya';
+					break;
+				case 'Jasa Lainnya;Jasa Lainnya':
+					$jenis_pengadaan = 'Jasa Lainnya';
+					break;
+				case 'Jasa Lainnya;Jasa Lainnya;Jasa Lainnya':
+					$jenis_pengadaan = 'Jasa Lainnya';
+					break;
+				case 'Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya':
+					$jenis_pengadaan = 'Jasa Lainnya';
+					break;
+				case 'Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya':
+					$jenis_pengadaan = 'Jasa Lainnya';
+					break;
+				case 'Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya':
+					$jenis_pengadaan = 'Jasa Lainnya';
+					break;
+				case 'Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya':
+					$jenis_pengadaan = 'Jasa Lainnya';
+					break;
+				case 'Pekerjaan Konstruksi;Pekerjaan Konstruksi':
+					$jenis_pengadaan = 'Pekerjaan Konstruksi';
+					break;				
+				
+				default:
+					$jenis_pengadaan = $py['jenis_pengadaan'];
+					break;
+			}
 			$data = [
 				'kode_rup'=>$py['kode_rup'],
 				'kode_kldi'=>$py['kode_kldi'],
@@ -77,7 +125,7 @@ class Update extends CI_Controller {
 				'detail_lokasi'=>$py['detail_lokasi'],
 				'sumber_dana'=>$py['sumber_dana'],
 				'metode_pemilihan'=>$py['metode_pemilihan'],
-				'jenis_pengadaan'=>$py['jenis_pengadaan'],
+				'jenis_pengadaan'=>$jenis_pengadaan,
 				'pagu_perjenis_pengadaan'=>$py['pagu_perjenis_pengadaan'],
 				'spesifikasi'=>$py['spesifikasi'],
 				'deskripsi'=>$py['deskripsi'],
@@ -109,9 +157,9 @@ class Update extends CI_Controller {
 		];
 		$this->db->insert('update_data_terakhir', $data_udt);
 		$this->session->set_flashdata('info', '<div class="callout callout-success">
-          																	<h4><i class="icon fa fa-check"></i> Proses Berhasil!</h4>
-															                <p>Database telah diperbarui</p>
-															              </div>');
+													<h4><i class="icon fa fa-check"></i> Proses Berhasil!</h4>
+								                <p>Database telah diperbarui</p>
+								              </div>');
 		redirect('update/penyedia');
 	}
 
@@ -189,9 +237,9 @@ class Update extends CI_Controller {
 		];
 		$this->db->insert('update_data_terakhir', $data_udt);
 		$this->session->set_flashdata('info', '<div class="callout callout-success">
-          																	<h4><i class="icon fa fa-check"></i> Proses Berhasil!</h4>
-															                <p>Database telah diperbarui</p>
-															              </div>');
+													<h4><i class="icon fa fa-check"></i> Proses Berhasil!</h4>
+								                <p>Database telah diperbarui</p>
+								              </div>');
 		redirect('update/swakelola');
 	}
 

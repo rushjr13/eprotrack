@@ -219,17 +219,44 @@
             <h3 class="box-title">Jenis Pengadaan</h3>
           </div>
           <div class="box-body">
-            <ul class="todo-list">
-              <?php foreach ($jp as $jp): ?>
-                <li>
-                  <span class="text"><?=$jp['nama_jp'] ?> <small>(<?=number_format($jp['paket_jp'], 0, ',', '.') ?> Paket)</small></span>
-                  <small class="label label-success">0%</small>
-                  <div class="pull-right">
-                    <span class="text-bold">Rp. <?=number_format($jp['pagu_jp'], 0, ',', '.') ?>,-</span>
-                  </div>
-                </li>
-              <?php endforeach ?>
-            </ul>
+            <div class="row">
+              <div class="col-md-6 col-xs-12">
+                <div id="donut-chart-jp" style="height: 265px;"></div>
+              </div>
+              <div class="col-md-6 col-xs-12">
+                <ul class="todo-list">
+                  <?php foreach ($jp as $jp): ?>
+                    <?php
+                      switch ($jp['nama_jp']) {
+                        case '-':
+                          $nama_jp=null;
+                          break;
+                        
+                        default:
+                          $nama_jp=$jp['nama_jp'];
+                          break;
+                      }
+                        // PENYEDIA
+                        $paket_jenis_pengadaan = $this->db->get_where('penyedia', ['jenis_pengadaan'=>$nama_jp]);
+                        $jlh_paket_jenis_pengadaan = $paket_jenis_pengadaan->num_rows();
+                        $data_paket_jenis_pengadaan = $paket_jenis_pengadaan->result_array();
+                        $jlh_pagu_jenis_pengadaan=0;
+                        foreach ($data_paket_jenis_pengadaan as $dpjp) {
+                          $pagu_jenis_pengadaan = $dpjp['pagu_rup'];
+                          $jlh_pagu_jenis_pengadaan = $jlh_pagu_jenis_pengadaan+$pagu_jenis_pengadaan;
+                        }
+                      ?>
+                    <li>
+                      <span class="text"><?=$jp['nama_jp'] ?> <small>(<?=number_format($jlh_paket_jenis_pengadaan, 0, ',', '.') ?> Paket)</small></span>
+                      <small class="label label-success">0%</small>
+                      <div class="pull-right">
+                        <span class="text-bold">Rp. <?=number_format($jlh_pagu_jenis_pengadaan, 0, ',', '.') ?>,-</span>
+                      </div>
+                    </li>
+                  <?php endforeach ?>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -242,17 +269,44 @@
             <h3 class="box-title">Metode Pemilihan</h3>
           </div>
           <div class="box-body">
-            <ul class="todo-list">
-              <?php foreach ($mp as $mp): ?>
-                <li>
-                  <span class="text"><?=$mp['nama_mp'] ?> <small>(<?=number_format($mp['paket_mp'], 0, ',', '.') ?> Paket)</small></span>
-                  <small class="label label-success">0%</small>
-                  <div class="pull-right">
-                    <span class="text-bold">Rp. <?=number_format($mp['pagu_mp'], 0, ',', '.') ?>,-</span>
-                  </div>
-                </li>
-              <?php endforeach ?>
-            </ul>
+            <div class="row">
+              <div class="col-md-6 col-xs-12">
+                <div id="donut-chart-jp" style="height: 265px;"></div>
+              </div>
+              <div class="col-md-6 col-xs-12">
+                <ul class="todo-list">
+                  <?php foreach ($mp as $mp): ?>
+                    <?php
+                      switch ($mp['nama_mp']) {
+                        case '-':
+                          $nama_mp=null;
+                          break;
+                        
+                        default:
+                          $nama_mp=$mp['nama_mp'];
+                          break;
+                      }
+                        // PENYEDIA
+                        $paket_metode_pemilihan = $this->db->get_where('penyedia', ['metode_pemilihan'=>$nama_mp]);
+                        $jlh_paket_metode_pemilihan = $paket_metode_pemilihan->num_rows();
+                        $data_paket_metode_pemilihan = $paket_metode_pemilihan->result_array();
+                        $jlh_pagu_metode_pemilihan=0;
+                        foreach ($data_paket_metode_pemilihan as $dpmp) {
+                          $pagu_metode_pemilihan = $dpmp['pagu_rup'];
+                          $jlh_pagu_metode_pemilihan = $jlh_pagu_metode_pemilihan+$pagu_metode_pemilihan;
+                        }
+                      ?>
+                    <li>
+                      <span class="text"><?=$mp['nama_mp'] ?> <small>(<?=number_format($jlh_paket_metode_pemilihan, 0, ',', '.') ?> Paket)</small></span>
+                      <small class="label label-success">0%</small>
+                      <div class="pull-right">
+                        <span class="text-bold">Rp. <?=number_format($jlh_pagu_metode_pemilihan, 0, ',', '.') ?>,-</span>
+                      </div>
+                    </li>
+                  <?php endforeach ?>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -262,7 +316,7 @@
 
 <div class="box box-warning box-solid">
   <div class="box-header with-border">
-    <h3 class="box-title">TRACKING JENIS PENGADAAN</h3>
+    <h3 class="box-title">JENIS PENGADAAN</h3>
     <div class="box-tools pull-right">
       <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
       </button>
@@ -308,7 +362,7 @@
 
 <div class="box box-danger box-solid">
   <div class="box-header with-border">
-    <h3 class="box-title">TRACKING METODE PEMILIHAN</h3>
+    <h3 class="box-title">METODE PEMILIHAN</h3>
     <div class="box-tools pull-right">
       <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
       </button>

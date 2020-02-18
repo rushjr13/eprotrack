@@ -10,8 +10,8 @@ class Rup_m extends CI_Model {
 		if($kode_rup!=null){
 			$this->db->where('kode_rup', $kode_rup);
 		}
-		$this->db->where('status_aktif', 'ya');
-		$this->db->where('status_umumkan', 'sudah');
+		$this->db->order_by('status_aktif', 'desc');
+		$this->db->order_by('status_umumkan', 'desc');
 		$this->db->order_by('id_satker', 'asc');
 		return $this->db->get();
 	}
@@ -23,8 +23,8 @@ class Rup_m extends CI_Model {
 		if($kode_rup!=null){
 			$this->db->where('kode_rup', $kode_rup);
 		}
-		$this->db->where('status_aktif', 'ya');
-		$this->db->where('status_umumkan', 'sudah');
+		$this->db->order_by('status_aktif', 'desc');
+		$this->db->order_by('status_umumkan', 'desc');
 		$this->db->order_by('id_satker', 'asc');
 		return $this->db->get();
 	}
@@ -87,28 +87,6 @@ class Rup_m extends CI_Model {
 			$this->db->where('nama_mp', $nama_mp);
 		}
 		$this->db->order_by('nama_mp', 'asc');
-		return $this->db->get();
-	}
-
-	public function jp($id_jp=null)
-	{
-		$this->db->select('*');
-		$this->db->from('jp');
-		if($id_jp!=null){
-			$this->db->where('id_jp', $id_jp);
-		}
-		$this->db->order_by('id_jp', 'asc');
-		return $this->db->get();
-	}
-
-	public function mp($id_mp=null)
-	{
-		$this->db->select('*');
-		$this->db->from('mp');
-		if($id_mp!=null){
-			$this->db->where('id_mp', $id_mp);
-		}
-		$this->db->order_by('id_mp', 'asc');
 		return $this->db->get();
 	}
 

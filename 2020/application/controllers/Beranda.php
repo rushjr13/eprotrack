@@ -142,8 +142,8 @@ class Beranda extends CI_Controller {
 		$data['satker'] = $this->rup->satker();
 
 		// RPP
-		$data['jp'] = $this->rup->jp()->result_array();
-		$data['mp'] = $this->rup->mp()->result_array();
+		$data['jp'] = $this->rup->jenis_pengadaan()->result_array();
+		$data['mp'] = $this->rup->metode_pemilihan()->result_array();
 		$data['tender'] = 0;
 		$data['tender_cepat'] = 0;
 		$data['seleksi'] = 0;

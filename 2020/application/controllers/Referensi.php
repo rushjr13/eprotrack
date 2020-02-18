@@ -50,6 +50,7 @@ class Referensi extends CI_Controller {
 			$data['judul'] = "Master";
 			$data['subjudul'] = "Referensi";
 			$data['satker'] = $this->rup->satker($kode_satker_asli)->row_array();
+			$data['skpd'] = $this->simda->skpd()->result_array();
 			$this->template->load('template', 'referensi/form_skpd', $data);
 		}
 	}
@@ -154,6 +155,18 @@ class Referensi extends CI_Controller {
 																                <p>Anggaran SIMDA <strong>'.$post['nama_satker'].'</strong> telah diperbarui</p>
 																              </div>');
 			redirect('referensi');
+		}else if(isset($post['penyedia'])){
+			$data_penyedia = [
+				'jenis_pengadaan'=>$post['jenis_pengadaan'],
+			];
+			$this->db->set($data_penyedia);
+			$this->db->where('kode_rup', $post['kode_rup']);
+			$this->db->update('penyedia');
+			$this->session->set_flashdata('info', '<div class="callout callout-success">
+														<h4><i class="icon fa fa-check"></i> Proses Berhasil!</h4>
+									                <p>Jenis Pengadaan <strong>'.$post['nama_paket'].'</strong> telah diperbarui</p>
+									              </div>');
+			redirect('referensi/jp');
 		}
 	}
 
