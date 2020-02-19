@@ -73,7 +73,6 @@
                       <li class="divider"></li>
                       <li class="<?php if($subjudul=='Update Data' || $subjudul=='Update Data RUP Penyedia' || $subjudul=='Update Data RUP Swakelola' || $subjudul=='Update Data Tender' || $subjudul=='Update Data Satuan Kerja' || $subjudul=='Update Data Program' || $subjudul=='Update Data Kegiatan'){echo "active";} ?>"><a href="<?=base_url('update') ?>">Update Data</a></li>
                       <li class="<?php if($subjudul=='Referensi'){echo "active";} ?>"><a href="<?=base_url('referensi') ?>">Referensi</a></li>
-                      <li class="<?php if($subjudul=='Rekapitulasi'){echo "active";} ?>"><a href="<?=base_url('rekapitulasi') ?>">Rekapitulasi</a></li>
                     </ul>
                   </li>
                 <?php } ?>

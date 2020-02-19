@@ -16,6 +16,173 @@ class Rup_m extends CI_Model {
 		return $this->db->get();
 	}
 
+	public function paket_skpd($kode_satker_asli=null)
+	{
+		$this->db->select('*');
+		$this->db->from('penyedia');
+		if($kode_satker_asli!=null){
+			$this->db->where('kode_satker_asli', $kode_satker_asli);
+		}
+		$this->db->where('status_aktif', 'ya');
+		$this->db->where('status_umumkan', 'sudah');
+		$this->db->order_by('kode_rup', 'asc');
+		return $this->db->get();
+	}
+
+	public function jp_konstruksi_skpd($kode_satker_asli=null)
+	{
+		$this->db->select('*');
+		$this->db->from('penyedia');
+		if($kode_satker_asli!=null){
+			$this->db->where('kode_satker_asli', $kode_satker_asli);
+		}
+		$this->db->where('jenis_pengadaan', 'Pekerjaan Konstruksi');
+		$this->db->where('status_aktif', 'ya');
+		$this->db->where('status_umumkan', 'sudah');
+		$this->db->order_by('kode_rup', 'asc');
+		return $this->db->get();
+	}
+
+	public function jp_konsultansi_skpd($kode_satker_asli=null)
+	{
+		$this->db->select('*');
+		$this->db->from('penyedia');
+		if($kode_satker_asli!=null){
+			$this->db->where('kode_satker_asli', $kode_satker_asli);
+		}
+		$this->db->where('jenis_pengadaan', 'Jasa Konsultansi');
+		$this->db->where('status_aktif', 'ya');
+		$this->db->where('status_umumkan', 'sudah');
+		$this->db->order_by('kode_rup', 'asc');
+		return $this->db->get();
+	}
+
+	public function jp_barang_skpd($kode_satker_asli=null)
+	{
+		$this->db->select('*');
+		$this->db->from('penyedia');
+		if($kode_satker_asli!=null){
+			$this->db->where('kode_satker_asli', $kode_satker_asli);
+		}
+		$this->db->where('jenis_pengadaan', 'Barang');
+		$this->db->where('status_aktif', 'ya');
+		$this->db->where('status_umumkan', 'sudah');
+		$this->db->order_by('kode_rup', 'asc');
+		return $this->db->get();
+	}
+
+	public function jp_jasa_skpd($kode_satker_asli=null)
+	{
+		$this->db->select('*');
+		$this->db->from('penyedia');
+		if($kode_satker_asli!=null){
+			$this->db->where('kode_satker_asli', $kode_satker_asli);
+		}
+		$this->db->where('jenis_pengadaan', 'Jasa Lainnya');
+		$this->db->where('status_aktif', 'ya');
+		$this->db->where('status_umumkan', 'sudah');
+		$this->db->order_by('kode_rup', 'asc');
+		return $this->db->get();
+	}
+
+	public function mp_dikecualikan_skpd($kode_satker_asli=null)
+	{
+		$this->db->select('*');
+		$this->db->from('penyedia');
+		if($kode_satker_asli!=null){
+			$this->db->where('kode_satker_asli', $kode_satker_asli);
+		}
+		$this->db->where('metode_pemilihan', 'Dikecualikan');
+		$this->db->where('status_aktif', 'ya');
+		$this->db->where('status_umumkan', 'sudah');
+		$this->db->order_by('kode_rup', 'asc');
+		return $this->db->get();
+	}
+
+	public function mp_purchasing_skpd($kode_satker_asli=null)
+	{
+		$this->db->select('*');
+		$this->db->from('penyedia');
+		if($kode_satker_asli!=null){
+			$this->db->where('kode_satker_asli', $kode_satker_asli);
+		}
+		$this->db->where('metode_pemilihan', 'e-Purchasing');
+		$this->db->where('status_aktif', 'ya');
+		$this->db->where('status_umumkan', 'sudah');
+		$this->db->order_by('kode_rup', 'asc');
+		return $this->db->get();
+	}
+
+	public function mp_pl_skpd($kode_satker_asli=null)
+	{
+		$this->db->select('*');
+		$this->db->from('penyedia');
+		if($kode_satker_asli!=null){
+			$this->db->where('kode_satker_asli', $kode_satker_asli);
+		}
+		$this->db->where('metode_pemilihan', 'Pengadaan Langsung');
+		$this->db->where('status_aktif', 'ya');
+		$this->db->where('status_umumkan', 'sudah');
+		$this->db->order_by('kode_rup', 'asc');
+		return $this->db->get();
+	}
+
+	public function mp_pl2_skpd($kode_satker_asli=null)
+	{
+		$this->db->select('*');
+		$this->db->from('penyedia');
+		if($kode_satker_asli!=null){
+			$this->db->where('kode_satker_asli', $kode_satker_asli);
+		}
+		$this->db->where('metode_pemilihan', 'Penunjukan Langsung');
+		$this->db->where('status_aktif', 'ya');
+		$this->db->where('status_umumkan', 'sudah');
+		$this->db->order_by('kode_rup', 'asc');
+		return $this->db->get();
+	}
+
+	public function mp_seleksi_skpd($kode_satker_asli=null)
+	{
+		$this->db->select('*');
+		$this->db->from('penyedia');
+		if($kode_satker_asli!=null){
+			$this->db->where('kode_satker_asli', $kode_satker_asli);
+		}
+		$this->db->where('metode_pemilihan', 'Seleksi');
+		$this->db->where('status_aktif', 'ya');
+		$this->db->where('status_umumkan', 'sudah');
+		$this->db->order_by('kode_rup', 'asc');
+		return $this->db->get();
+	}
+
+	public function mp_tender_skpd($kode_satker_asli=null)
+	{
+		$this->db->select('*');
+		$this->db->from('penyedia');
+		if($kode_satker_asli!=null){
+			$this->db->where('kode_satker_asli', $kode_satker_asli);
+		}
+		$this->db->where('metode_pemilihan', 'Tender');
+		$this->db->where('status_aktif', 'ya');
+		$this->db->where('status_umumkan', 'sudah');
+		$this->db->order_by('kode_rup', 'asc');
+		return $this->db->get();
+	}
+
+	public function mp_tc_skpd($kode_satker_asli=null)
+	{
+		$this->db->select('*');
+		$this->db->from('penyedia');
+		if($kode_satker_asli!=null){
+			$this->db->where('kode_satker_asli', $kode_satker_asli);
+		}
+		$this->db->where('metode_pemilihan', 'Tender Cepat');
+		$this->db->where('status_aktif', 'ya');
+		$this->db->where('status_umumkan', 'sudah');
+		$this->db->order_by('kode_rup', 'asc');
+		return $this->db->get();
+	}
+
 	public function swakelola($kode_rup=null)
 	{
 		$this->db->select('*');

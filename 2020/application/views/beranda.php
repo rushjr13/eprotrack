@@ -323,7 +323,7 @@
     </div>
   </div>
   <div class="box-body table-responsive">
-    <table class="table table-sm table-bordered table-striped table-hover small" id="table3" width="100%" cellspacing="0">
+    <table class="table table-sm table-bordered table-striped table-hover" width="100%" cellspacing="0">
       <thead>
         <tr>
           <th class="text-center" style="vertical-align: middle">NO</th>
@@ -336,26 +336,25 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="text-center" style="vertical-align: middle" width="2%">1</td>
-          <td style="vertical-align: middle">nama opd</td>
-          <td class="text-center" style="vertical-align: middle" width="9%">0</td>
-          <td class="text-center" style="vertical-align: middle" width="9%">0</td>
-          <td class="text-center" style="vertical-align: middle" width="9%">0</td>
-          <td class="text-center" style="vertical-align: middle" width="9%">0</td>
-          <td class="text-center" style="vertical-align: middle" width="9%">0</td>
-        </tr>
+        <?php $no=1; foreach ($satker->result_array() as $sk): ?>
+          <?php
+            $paket = $this->rup->paket_skpd($sk['kode_satker_asli'])->num_rows();
+            $jp_konstruksi = $this->rup->jp_konstruksi_skpd($sk['kode_satker_asli'])->num_rows();
+            $jp_konsultansi = $this->rup->jp_konsultansi_skpd($sk['kode_satker_asli'])->num_rows();
+            $jp_barang = $this->rup->jp_barang_skpd($sk['kode_satker_asli'])->num_rows();
+            $jp_jasa = $this->rup->jp_jasa_skpd($sk['kode_satker_asli'])->num_rows();
+          ?>
+          <tr>
+            <td class="text-center" style="vertical-align: middle" width="2%"><?=$no++ ?></td>
+            <td style="vertical-align: middle"><?=$sk['nama_satker'] ?></td>
+            <td class="text-center" style="vertical-align: middle" width="9%"><?=$paket ?></td>
+            <td class="text-center" style="vertical-align: middle" width="9%"><?=$jp_konstruksi ?></td>
+            <td class="text-center" style="vertical-align: middle" width="9%"><?=$jp_konsultansi ?></td>
+            <td class="text-center" style="vertical-align: middle" width="9%"><?=$jp_barang ?></td>
+            <td class="text-center" style="vertical-align: middle" width="9%"><?=$jp_jasa ?></td>
+          </tr>
+        <?php endforeach ?>
       </tbody>
-      <tfoot>
-        <tr>
-          <th colspan="2" class="text-right" style="vertical-align: middle">TOTAL</th>
-          <th class="text-center" style="vertical-align: middle">0</th>
-          <th class="text-center" style="vertical-align: middle">0</th>
-          <th class="text-center" style="vertical-align: middle">0</th>
-          <th class="text-center" style="vertical-align: middle">0</th>
-          <th class="text-center" style="vertical-align: middle">0</th>
-        </tr>
-      </tfoot>
     </table>
   </div>
 </div>
@@ -369,19 +368,20 @@
     </div>
   </div>
   <div class="box-body table-responsive">
-    <table class="table table-sm table-bordered table-striped table-hover small" id="table4" width="100%" cellspacing="0">
+    <table class="table table-sm table-bordered table-striped table-hover small" width="100%" cellspacing="0">
       <thead>
         <tr>
           <th rowspan="2" class="text-center" style="vertical-align: middle">NO</th>
           <th rowspan="2" class="text-center" style="vertical-align: middle">OPD</th>
           <th rowspan="2" class="text-center" style="vertical-align: middle">PAKET</th>
+          <th rowspan="2" class="text-center" style="vertical-align: middle">SELEKSI</th>
           <th rowspan="2" class="text-center" style="vertical-align: middle">TENDER</th>
           <th rowspan="2" class="text-center" style="vertical-align: middle">TENDER<br>CEPAT</th>
           <th rowspan="2" class="text-center" style="vertical-align: middle">E-PURCHASING</th>
           <th rowspan="2" class="text-center" style="vertical-align: middle">PENUNJUKAN<br>LANGSUNG</th>
           <th rowspan="2" class="text-center" style="vertical-align: middle">PENGADAAN<br>LANGSUNG</th>
-          <th colspan="4" class="text-center" style="vertical-align: middle">SWAKELOLA</th>
           <th rowspan="2" class="text-center" style="vertical-align: middle">DIKECUALIKAN</th>
+          <th colspan="4" class="text-center" style="vertical-align: middle">SWAKELOLA</th>
         </tr>
         <tr>
           <th class="text-center" style="vertical-align: middle">Tipe 1</th>
@@ -391,38 +391,35 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="text-center" style="vertical-align: middle" width="2%">1</td>
-          <td style="vertical-align: middle">nama opd</td>
-          <td class="text-center" style="vertical-align: middle" width="5%">0</td>
-          <td class="text-center" style="vertical-align: middle" width="5%">0</td>
-          <td class="text-center" style="vertical-align: middle" width="5%">0</td>
-          <td class="text-center" style="vertical-align: middle" width="9%">0</td>
-          <td class="text-center" style="vertical-align: middle" width="9%">0</td>
-          <td class="text-center" style="vertical-align: middle" width="9%">0</td>
-          <td class="text-center" style="vertical-align: middle" width="5%">0</td>
-          <td class="text-center" style="vertical-align: middle" width="5%">0</td>
-          <td class="text-center" style="vertical-align: middle" width="5%">0</td>
-          <td class="text-center" style="vertical-align: middle" width="5%">0</td>
-          <td class="text-center" style="vertical-align: middle" width="9%">0</td>
-        </tr>
+        <?php $no=1; foreach ($satker->result_array() as $sk): ?>
+          <?php
+            $paket = $this->rup->paket_skpd($sk['kode_satker_asli'])->num_rows();
+            $mp_dikecualikan = $this->rup->mp_dikecualikan_skpd($sk['kode_satker_asli'])->num_rows();
+            $mp_purchasing = $this->rup->mp_purchasing_skpd($sk['kode_satker_asli'])->num_rows();
+            $mp_pl = $this->rup->mp_pl_skpd($sk['kode_satker_asli'])->num_rows();
+            $mp_pl2 = $this->rup->mp_pl2_skpd($sk['kode_satker_asli'])->num_rows();
+            $mp_seleksi = $this->rup->mp_seleksi_skpd($sk['kode_satker_asli'])->num_rows();
+            $mp_tender = $this->rup->mp_tender_skpd($sk['kode_satker_asli'])->num_rows();
+            $mp_tc = $this->rup->mp_tc_skpd($sk['kode_satker_asli'])->num_rows();
+          ?>
+          <tr>
+            <td class="text-center" style="vertical-align: middle" width="2%"><?=$no++ ?></td>
+            <td style="vertical-align: middle"><?=$sk['nama_satker'] ?></td>
+            <td class="text-center" style="vertical-align: middle" width="5%"><?=$paket ?></td>
+            <td class="text-center" style="vertical-align: middle" width="9%"><?=$mp_seleksi ?></td>
+            <td class="text-center" style="vertical-align: middle" width="5%"><?=$mp_tender ?></td>
+            <td class="text-center" style="vertical-align: middle" width="5%"><?=$mp_tc ?></td>
+            <td class="text-center" style="vertical-align: middle" width="5%"><?=$mp_purchasing ?></td>
+            <td class="text-center" style="vertical-align: middle" width="9%"><?=$mp_pl2 ?></td>
+            <td class="text-center" style="vertical-align: middle" width="9%"><?=$mp_pl ?></td>
+            <td class="text-center" style="vertical-align: middle" width="5%"><?=$mp_dikecualikan ?></td>
+            <td class="text-center" style="vertical-align: middle" width="5%">0</td>
+            <td class="text-center" style="vertical-align: middle" width="5%">0</td>
+            <td class="text-center" style="vertical-align: middle" width="9%">0</td>
+            <td class="text-center" style="vertical-align: middle" width="9%">0</td>
+          </tr>
+        <?php endforeach ?>
       </tbody>
-      <tfoot>
-        <tr>
-          <th colspan="2" class="text-right" style="vertical-align: middle">TOTAL</th>
-          <th class="text-center" style="vertical-align: middle">0</th>
-          <th class="text-center" style="vertical-align: middle">0</th>
-          <th class="text-center" style="vertical-align: middle">0</th>
-          <th class="text-center" style="vertical-align: middle">0</th>
-          <th class="text-center" style="vertical-align: middle">0</th>
-          <th class="text-center" style="vertical-align: middle">0</th>
-          <th class="text-center" style="vertical-align: middle">0</th>
-          <th class="text-center" style="vertical-align: middle">0</th>
-          <th class="text-center" style="vertical-align: middle">0</th>
-          <th class="text-center" style="vertical-align: middle">0</th>
-          <th class="text-center" style="vertical-align: middle">0</th>
-        </tr>
-      </tfoot>
     </table>
   </div>
 </div>

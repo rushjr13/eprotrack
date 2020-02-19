@@ -63,11 +63,7 @@ $route['rup/penyedia/(:num)'] = 'rup/data_penyedia/$1';
 $route['rup/swakelola/(:num)'] = 'rup/data_swakelola/$1';
 $route['rup/tender/(:num)'] = 'rup/data_tender/$1';
 
-// REKAPITULASI
-$route['rekapitulasi'] = 'referensi/rekapitulasi';
-$route['rekapitulasi/jp/edit/(:num)'] = 'referensi/rekapitulasi_jp/$1';
-$route['rekapitulasi/mp/edit/(:num)'] = 'referensi/rekapitulasi_mp/$1';
-
+// REFERENSI SATKER
 $route['referensi/edit/satker/(:any)'] = 'referensi/edit_satker/$1';
 
 // UPDATE
