@@ -105,6 +105,34 @@ class Update extends CI_Controller {
 					$jenis_pengadaan = $py['jenis_pengadaan'];
 					break;
 			}
+
+			switch ($py['sumber_dana']) {
+				case 'APBD,APBD':
+					$sumber_dana = 'APBD';
+					break;
+				case 'APBD,APBD,APBD':
+					$sumber_dana = 'APBD';
+					break;
+				case 'APBD,APBD,APBD,APBD':
+					$sumber_dana = 'APBD';
+					break;
+				case 'APBD,APBD,APBD,APBD,APBD':
+					$sumber_dana = 'APBD';
+					break;
+				case 'APBD,APBD,APBD,APBD,APBD,APBD':
+					$sumber_dana = 'APBD';
+					break;
+				case 'APBD,APBD,APBD,APBD,APBD,APBD,APBD':
+					$sumber_dana = 'APBD';
+					break;
+				case 'APBN,APBN':
+					$sumber_dana = 'APBN';
+					break;
+				
+				default:
+					$sumber_dana = $py['sumber_dana'];
+					break;
+			}
 			$data = [
 				'kode_rup'=>$py['kode_rup'],
 				'kode_kldi'=>$py['kode_kldi'],
@@ -123,7 +151,7 @@ class Update extends CI_Controller {
 				'pagu_rup'=>$py['pagu_rup'],
 				'lokasi'=>$py['lokasi'],
 				'detail_lokasi'=>$py['detail_lokasi'],
-				'sumber_dana'=>$py['sumber_dana'],
+				'sumber_dana'=>$sumber_dana,
 				'metode_pemilihan'=>$py['metode_pemilihan'],
 				'jenis_pengadaan'=>$jenis_pengadaan,
 				'pagu_perjenis_pengadaan'=>$py['pagu_perjenis_pengadaan'],
@@ -193,6 +221,18 @@ class Update extends CI_Controller {
 
 		// LOOPING DATA JSON DAN SIMPAN DI TABEL
 		foreach ($swakelola as $swk) {
+			switch ($swk['sumber_dana']) {
+				case 'APBD,APBD':
+					$sumber_dana = 'APBD';
+					break;
+				case 'APBD,APBD,APBD':
+					$sumber_dana = 'APBD';
+					break;
+				
+				default:
+					$sumber_dana = $swk['sumber_dana'];
+					break;
+			}
 			$data = [
 				'kode_rup'=>$swk['kode_rup'],
 				'kode_kldi'=>$swk['kode_kldi'],
@@ -210,7 +250,7 @@ class Update extends CI_Controller {
 				'pagu_rup'=>$swk['pagu_rup'],
 				'lokasi'=>$swk['lokasi'],
 				'detail_lokasi'=>$swk['detail_lokasi'],
-				'sumber_dana'=>$swk['sumber_dana'],
+				'sumber_dana'=>$sumber_dana,
 				'deskripsi'=>$swk['deskripsi'],
 				'awal_pekerjaan'=>$swk['awal_pekerjaan'],
 				'akhir_pekerjaan'=>$swk['akhir_pekerjaan'],
@@ -271,6 +311,10 @@ class Update extends CI_Controller {
 		$this->db->empty_table('satker');
 		$this->db->empty_table('jenis_pengadaan');
 		$this->db->empty_table('metode_pemilihan');
+		$this->db->empty_table('apbd_penyedia');
+		$this->db->empty_table('apbn_penyedia');
+		$this->db->empty_table('apbd_penyedia');
+		$this->db->empty_table('apbn_penyedia');
 
 		// LOOPING DATA JSON DAN SIMPAN DI TABEL
 		foreach ($penyedia as $py) {
@@ -343,6 +387,40 @@ class Update extends CI_Controller {
 				$this->db->where('nama_mp', $nama_mp);
 				$this->db->update('metode_pemilihan');
 			}
+
+			// SUMBER DANA
+			// APBD
+			$apbd_penyedia = $this->rup->apbd_penyedia($py['sumber_dana'])->row_array();
+			if(!$apbd_penyedia){
+				$data_apbd_penyedia = [
+					'id_apbd_penyedia'=>$py['kode_rup'],
+					'nama_apbd_penyedia'=>$py['sumber_dana'],
+				];
+				$this->db->insert('apbd_penyedia', $data_apbd_penyedia);
+			}else{
+				$data_apbd_penyedia = [
+					'id_apbd_penyedia'=>$py['kode_rup']
+				];
+				$this->db->set($data_apbd_penyedia);
+				$this->db->where('nama_apbd_penyedia', $py['sumber_dana']);
+				$this->db->update('apbd_penyedia');
+			}
+			// APBN
+			$apbn_penyedia = $this->rup->apbn_penyedia($py['sumber_dana'])->row_array();
+			if(!$apbn_penyedia){
+				$data_apbn_penyedia = [
+					'id_apbn_penyedia'=>$py['kode_rup'],
+					'nama_apbn_penyedia'=>$py['sumber_dana'],
+				];
+				$this->db->insert('apbn_penyedia', $data_apbn_penyedia);
+			}else{
+				$data_apbn_penyedia = [
+					'id_apbn_penyedia'=>$py['kode_rup']
+				];
+				$this->db->set($data_apbn_penyedia);
+				$this->db->where('nama_apbn_penyedia', $py['sumber_dana']);
+				$this->db->update('apbn_penyedia');
+			}
 		}
 
 		foreach ($swakelola as $swk) {
@@ -362,6 +440,40 @@ class Update extends CI_Controller {
 				$this->db->set($data);
 				$this->db->where('kode_satker_asli', $swk['kode_satker_asli']);
 				$this->db->update('satker');
+			}
+
+			// SUMBER DANA
+			// APBD
+			$apbd_swakelola = $this->rup->apbd_swakelola($swk['sumber_dana'])->row_array();
+			if(!$apbd_swakelola){
+				$data_apbd_swakelola = [
+					'id_apbd_swakelola'=>$swk['kode_rup'],
+					'nama_apbd_swakelola'=>$swk['sumber_dana'],
+				];
+				$this->db->insert('apbd_swakelola', $data_apbd_swakelola);
+			}else{
+				$data_apbd_swakelola = [
+					'id_apbd_swakelola'=>$swk['kode_rup']
+				];
+				$this->db->set($data_apbd_swakelola);
+				$this->db->where('nama_apbd_swakelola', $swk['sumber_dana']);
+				$this->db->update('apbd_swakelola');
+			}
+			// APBN
+			$apbn_swakelola = $this->rup->apbn_swakelola($swk['sumber_dana'])->row_array();
+			if(!$apbn_swakelola){
+				$data_apbn_swakelola = [
+					'id_apbn_swakelola'=>$swk['kode_rup'],
+					'nama_apbn_swakelola'=>$swk['sumber_dana'],
+				];
+				$this->db->insert('apbn_swakelola', $data_apbn_swakelola);
+			}else{
+				$data_apbn_swakelola = [
+					'id_apbn_swakelola'=>$swk['kode_rup']
+				];
+				$this->db->set($data_apbn_swakelola);
+				$this->db->where('nama_apbn_swakelola', $swk['sumber_dana']);
+				$this->db->update('apbn_swakelola');
 			}
 		}
 

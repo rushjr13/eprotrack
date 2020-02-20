@@ -16,7 +16,7 @@ class Rup_m extends CI_Model {
 		return $this->db->get();
 	}
 
-	public function paket_skpd($kode_satker_asli=null)
+	public function paket_penyedia_skpd($kode_satker_asli=null)
 	{
 		$this->db->select('*');
 		$this->db->from('penyedia');
@@ -196,6 +196,75 @@ class Rup_m extends CI_Model {
 		return $this->db->get();
 	}
 
+	public function paket_swakelola_skpd($kode_satker_asli=null)
+	{
+		$this->db->select('*');
+		$this->db->from('swakelola');
+		if($kode_satker_asli!=null){
+			$this->db->where('kode_satker_asli', $kode_satker_asli);
+		}
+		$this->db->where('status_aktif', 'ya');
+		$this->db->where('status_umumkan', 'sudah');
+		$this->db->order_by('kode_rup', 'asc');
+		return $this->db->get();
+	}
+
+	public function swakelola1_skpd($kode_satker_asli=null)
+	{
+		$this->db->select('*');
+		$this->db->from('swakelola');
+		if($kode_satker_asli!=null){
+			$this->db->where('kode_satker_asli', $kode_satker_asli);
+		}
+		$this->db->where('tipe_swakelola', 1);
+		$this->db->where('status_aktif', 'ya');
+		$this->db->where('status_umumkan', 'sudah');
+		$this->db->order_by('kode_rup', 'asc');
+		return $this->db->get();
+	}
+
+	public function swakelola2_skpd($kode_satker_asli=null)
+	{
+		$this->db->select('*');
+		$this->db->from('swakelola');
+		if($kode_satker_asli!=null){
+			$this->db->where('kode_satker_asli', $kode_satker_asli);
+		}
+		$this->db->where('tipe_swakelola', 2);
+		$this->db->where('status_aktif', 'ya');
+		$this->db->where('status_umumkan', 'sudah');
+		$this->db->order_by('kode_rup', 'asc');
+		return $this->db->get();
+	}
+
+	public function swakelola3_skpd($kode_satker_asli=null)
+	{
+		$this->db->select('*');
+		$this->db->from('swakelola');
+		if($kode_satker_asli!=null){
+			$this->db->where('kode_satker_asli', $kode_satker_asli);
+		}
+		$this->db->where('tipe_swakelola', 3);
+		$this->db->where('status_aktif', 'ya');
+		$this->db->where('status_umumkan', 'sudah');
+		$this->db->order_by('kode_rup', 'asc');
+		return $this->db->get();
+	}
+
+	public function swakelola4_skpd($kode_satker_asli=null)
+	{
+		$this->db->select('*');
+		$this->db->from('swakelola');
+		if($kode_satker_asli!=null){
+			$this->db->where('kode_satker_asli', $kode_satker_asli);
+		}
+		$this->db->where('tipe_swakelola', 4);
+		$this->db->where('status_aktif', 'ya');
+		$this->db->where('status_umumkan', 'sudah');
+		$this->db->order_by('kode_rup', 'asc');
+		return $this->db->get();
+	}
+
 	public function satker($kode_satker_asli=null)
 	{
 		$this->db->select('*');
@@ -270,6 +339,26 @@ class Rup_m extends CI_Model {
 		return $this->db->get();
 	}
 
+	public function apbd_penyedia($nama_apbd_penyedia=null)
+	{
+		$this->db->select('*');
+		$this->db->from('apbd_penyedia');
+		if($nama_apbd_penyedia!=null){
+			$this->db->where('nama_apbd_penyedia', $nama_apbd_penyedia);
+		}
+		return $this->db->get();
+	}
+
+	public function apbn_penyedia($nama_apbn_penyedia=null)
+	{
+		$this->db->select('*');
+		$this->db->from('apbn_penyedia');
+		if($nama_apbn_penyedia!=null){
+			$this->db->where('nama_apbn_penyedia', $nama_apbn_penyedia);
+		}
+		return $this->db->get();
+	}
+
 	public function sb_swakelola($sb=null)
 	{
 		$this->db->select('*');
@@ -280,6 +369,26 @@ class Rup_m extends CI_Model {
 		$this->db->order_by('id_satker', 'asc');
 		$this->db->order_by('status_aktif', 'desc');
 		$this->db->order_by('status_umumkan', 'desc');
+		return $this->db->get();
+	}
+
+	public function apbd_swakelola($nama_apbd_swakelola=null)
+	{
+		$this->db->select('*');
+		$this->db->from('apbd_swakelola');
+		if($nama_apbd_swakelola!=null){
+			$this->db->where('nama_apbd_swakelola', $nama_apbd_swakelola);
+		}
+		return $this->db->get();
+	}
+
+	public function apbn_swakelola($nama_apbn_swakelola=null)
+	{
+		$this->db->select('*');
+		$this->db->from('apbn_swakelola');
+		if($nama_apbn_swakelola!=null){
+			$this->db->where('nama_apbn_swakelola', $nama_apbn_swakelola);
+		}
 		return $this->db->get();
 	}
 
