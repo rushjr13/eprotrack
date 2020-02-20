@@ -2,13 +2,14 @@
 	<table class="table table-sm table-bordered table-striped table-hover" id="table2" width="100%" cellspacing="0">
 		<thead>
 			<tr>
-				<th style="vertical-align: middle" class="text-center" width="3%">NO</th>
-				<th style="vertical-align: middle" class="text-center" width="32%">NAMA PAKET</th>
-				<th style="vertical-align: middle" class="text-center" width="32%">NAMA SATKER</th>
-        <th style="vertical-align: middle" class="text-center" width="15%">PAGU (Rp)</th>
-        <th style="vertical-align: middle" class="text-center" width="6%">AKTIF</th>
-        <th style="vertical-align: middle" class="text-center" width="6%">UMUMKAN</th>
-				<th style="vertical-align: middle" class="text-center" width="6%">TENDER</th>
+				<th style="vertical-align: middle" class="text-center">NO</th>
+        <th style="vertical-align: middle" class="text-center">KODE RUP</th>
+				<th style="vertical-align: middle" class="text-center">NAMA PAKET</th>
+				<th style="vertical-align: middle" class="text-center">NAMA SATKER</th>
+        <th style="vertical-align: middle" class="text-center">PAGU (Rp)</th>
+        <th style="vertical-align: middle" class="text-center">AKTIF</th>
+        <th style="vertical-align: middle" class="text-center">UMUMKAN</th>
+				<th style="vertical-align: middle" class="text-center">TENDER</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -18,7 +19,7 @@
           $total = $total+$pagu;
         ?>
   			<tr>
-  				<td style="vertical-align: middle" class="text-center"><?=$no++ ?></td>
+  				<td style="vertical-align: middle" class="text-center"  width="2%"><?=$no++ ?></td>
   				<?php
   					if($py['metode_pemilihan']=='Pengadaan Langsung'){
   						$bg = 'aqua';
@@ -30,37 +31,54 @@
               $bg = 'gray';
             }
   				?>
-  				<td style="vertical-align: middle"><a href="#" id="tbldatapenyedia" data-id="<?=$py['kode_rup'] ?>"><?=$py['nama_paket'] ?></a><small class="label pull-right bg-<?=$bg ?>"><?=$py['metode_pemilihan'] ?></small></td>
-  				<td style="vertical-align: middle"><?=$py['nama_satker'] ?></td>
-          <td style="vertical-align: middle" class="text-right"><?=number_format($py['pagu_rup'], 0, ',', '.') ?></td>
-          <td style="vertical-align: middle" class="text-center">
+          <td style="vertical-align: middle" class="text-center" width="4%"><?=$py['kode_rup'] ?></td>
+  				<td style="vertical-align: middle" width="45%"><a href="#" id="tbldatapenyedia" data-id="<?=$py['kode_rup'] ?>"><?=$py['nama_paket'] ?></a><small class="label pull-right bg-<?=$bg ?>"><?=$py['metode_pemilihan'] ?></small></td>
+  				<td style="vertical-align: middle" width="30%"><?=$py['nama_satker'] ?></td>
+          <td style="vertical-align: middle" class="text-right" width="7%"><?=number_format($py['pagu_rup'], 0, ',', '.') ?></td>
+          <td style="vertical-align: middle" class="text-center"  width="4%">
             <?php if($py['status_aktif']=='ya'){ ?>
               <a class="text-success"><i class="fa fa-check"></i></a>
             <?php }else{ ?>
               <a class="text-danger"><i class="fa fa-times"></i></a>
             <?php } ?>
           </td>
-          <td style="vertical-align: middle" class="text-center">
+          <td style="vertical-align: middle" class="text-center"  width="4%">
             <?php if($py['status_umumkan']=='sudah'){ ?>
               <a class="text-success"><i class="fa fa-check"></i></a>
             <?php }else{ ?>
               <a class="text-danger"><i class="fa fa-times"></i></a>
             <?php } ?>
           </td>
-  				<td style="vertical-align: middle" class="text-center">
-            <?php $kode_rup = '['.$py['kode_rup'].']'; ?>
-            <a href="#"  class="text-success"><i class="fa fa-check"></i></a>
+  				<td style="vertical-align: middle" class="text-center"  width="4%">
+            <?php
+              $json = file_get_contents(base_url('json/spse-tender.json'));
+              $tender = json_decode($json, true);
+              foreach ($tender as $tdr) {
+                if(!isset($tdr['id_rup'][0])){
+                  $id_rup = "-";
+                }else{
+                  $id_rup = $tdr['id_rup'][0];
+                  if($id_rup==$py['kode_rup']){
+                    $icon = 'fa-check';
+                    $warna = 'text-success';
+                  }else{
+                    $icon = 'fa-times';
+                    $warna = 'text-danger';
+                  }
+                }
+              }
+            ?>
+
+            <a href="#"  class="<?=$warna ?>"><i class="fa <?=$icon ?>"></i> <?=$id_rup ?></a>
           </td>
   			</tr>
 			<?php endforeach ?>
 		</tbody>
     <tfoot>
       <tr>
-        <th style="vertical-align: middle" colspan="3" class="text-right">TOTAL (Rp)</th>
+        <th style="vertical-align: middle" colspan="4" class="text-right">TOTAL (Rp)</th>
         <th style="vertical-align: middle" class="text-right"><?=number_format($total, 0, ',', '.') ?></th>
-        <th style="vertical-align: middle" class="text-center">&nbsp;</th>
-        <th style="vertical-align: middle" class="text-center">&nbsp;</th>
-        <th style="vertical-align: middle" class="text-center">&nbsp;</th>
+        <th style="vertical-align: middle" colspan="3" class="text-center">&nbsp;</th>
       </tr>
     </tfoot>
 	</table>

@@ -283,6 +283,170 @@ class Update extends CI_Controller {
 		redirect('update/swakelola');
 	}
 
+	public function tender()
+	{
+		// UMUM
+		$username = $this->session->userdata('username');
+		if($username){
+			$data['pengguna_masuk'] = $this->pengguna->get($username)->row_array();
+		}else{
+			$data['pengguna_masuk'] = "";
+		}
+
+		// KHUSUS
+		$data['judul'] = "Master";
+		$data['subjudul'] = "Update Data Tender";
+
+		$rup = rup('offline');
+		$data['json'] = $rup['tender'];
+		$data['db'] = $this->rup->tender();
+		$this->template->load('template', 'update/tender', $data);
+	}
+
+	public function tender_proses()
+	{
+		$rup = rup('offline');
+		$penyedia = $rup['penyedia'];
+
+		// MENGOSONGKAN TABEL
+		$this->db->empty_table('penyedia');
+
+		// LOOPING DATA JSON DAN SIMPAN DI TABEL
+		foreach ($penyedia as $py) {
+			switch ($py['jenis_pengadaan']) {
+				case 'Barang;Barang':
+					$jenis_pengadaan = 'Barang';
+					break;
+				case 'Barang;Barang;Barang':
+					$jenis_pengadaan = 'Barang';
+					break;
+				case 'Barang;Barang;Barang;Barang':
+					$jenis_pengadaan = 'Barang';
+					break;
+				case 'Barang;Barang;Barang;Barang;Barang':
+					$jenis_pengadaan = 'Barang';
+					break;
+				case 'Barang;Barang;Barang;Barang;Barang;Barang':
+					$jenis_pengadaan = 'Barang';
+					break;
+				case 'Jasa Konsultansi;Jasa Konsultansi':
+					$jenis_pengadaan = 'Jasa Konsultansi';
+					break;
+				case 'Jasa Lainnya;Barang;Barang;Barang;Barang;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Barang;Barang;Barang;Barang;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya':
+					$jenis_pengadaan = 'Jasa Lainnya';
+					break;
+				case 'Jasa Lainnya;Jasa Lainnya':
+					$jenis_pengadaan = 'Jasa Lainnya';
+					break;
+				case 'Jasa Lainnya;Jasa Lainnya;Jasa Lainnya':
+					$jenis_pengadaan = 'Jasa Lainnya';
+					break;
+				case 'Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya':
+					$jenis_pengadaan = 'Jasa Lainnya';
+					break;
+				case 'Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya':
+					$jenis_pengadaan = 'Jasa Lainnya';
+					break;
+				case 'Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya':
+					$jenis_pengadaan = 'Jasa Lainnya';
+					break;
+				case 'Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya':
+					$jenis_pengadaan = 'Jasa Lainnya';
+					break;
+				case 'Pekerjaan Konstruksi;Pekerjaan Konstruksi':
+					$jenis_pengadaan = 'Pekerjaan Konstruksi';
+					break;				
+				
+				default:
+					$jenis_pengadaan = $py['jenis_pengadaan'];
+					break;
+			}
+
+			switch ($py['sumber_dana']) {
+				case 'APBD,APBD':
+					$sumber_dana = 'APBD';
+					break;
+				case 'APBD,APBD,APBD':
+					$sumber_dana = 'APBD';
+					break;
+				case 'APBD,APBD,APBD,APBD':
+					$sumber_dana = 'APBD';
+					break;
+				case 'APBD,APBD,APBD,APBD,APBD':
+					$sumber_dana = 'APBD';
+					break;
+				case 'APBD,APBD,APBD,APBD,APBD,APBD':
+					$sumber_dana = 'APBD';
+					break;
+				case 'APBD,APBD,APBD,APBD,APBD,APBD,APBD':
+					$sumber_dana = 'APBD';
+					break;
+				case 'APBN,APBN':
+					$sumber_dana = 'APBN';
+					break;
+				
+				default:
+					$sumber_dana = $py['sumber_dana'];
+					break;
+			}
+			$data = [
+				'kode_rup'=>$py['kode_rup'],
+				'kode_kldi'=>$py['kode_kldi'],
+				'kldi'=>$py['kldi'],
+				'jenis'=>$py['jenis'],
+				'id_satker'=>$py['id_satker'],
+				'kode_satker_asli'=>$py['kode_satker_asli'],
+				'nama_satker'=>$py['nama_satker'],
+				'kode_string_program'=>$py['kode_string_program'],
+				'program'=>$py['program'],
+				'kode_string_kegiatan'=>$py['kode_string_kegiatan'],
+				'kegiatan'=>$py['kegiatan'],
+				'mak'=>$py['mak'],
+				'nama_paket'=>$py['nama_paket'],
+				'volume'=>$py['volume'],
+				'pagu_rup'=>$py['pagu_rup'],
+				'lokasi'=>$py['lokasi'],
+				'detail_lokasi'=>$py['detail_lokasi'],
+				'sumber_dana'=>$sumber_dana,
+				'metode_pemilihan'=>$py['metode_pemilihan'],
+				'jenis_pengadaan'=>$jenis_pengadaan,
+				'pagu_perjenis_pengadaan'=>$py['pagu_perjenis_pengadaan'],
+				'spesifikasi'=>$py['spesifikasi'],
+				'deskripsi'=>$py['deskripsi'],
+				'awal_pengadaan'=>$py['awal_pengadaan'],
+				'akhir_pengadaan'=>$py['akhir_pengadaan'],
+				'awal_pekerjaan'=>$py['awal_pekerjaan'],
+				'akhir_pekerjaan'=>$py['akhir_pekerjaan'],
+				'tanggal_kebutuhan'=>$py['tanggal_kebutuhan'],
+				'nama_kpa'=>$py['nama_kpa'],
+				'nip_kpa'=>$py['nip_kpa'],
+				'nama_ppk'=>$py['nama_ppk'],
+				'nip_ppk'=>$py['nip_ppk'],
+				'id_swakelola'=>$py['id_swakelola'],
+				'penyedia_didalam_swakelola'=>$py['penyedia_didalam_swakelola'],
+				'id_client'=>$py['id_client'],
+				'tkdn'=>$py['tkdn'],
+				'pradipa'=>$py['pradipa'],
+				'umkm'=>$py['umkm'],
+				'status_aktif'=>$py['status_aktif'],
+				'status_umumkan'=>$py['status_umumkan'],
+				'tanggal_terakhir_di_update'=>$py['tanggal_terakhir_di_update'],
+			];
+			$this->db->insert('penyedia', $data);
+		}
+		$data_udt = [
+			'id_udt'=>time(),
+			'keterangan'=>'Pembaruan data Paket Penyedia',
+			'username'=>$this->session->userdata('username')
+		];
+		$this->db->insert('update_data_terakhir', $data_udt);
+		$this->session->set_flashdata('info', '<div class="callout callout-success">
+													<h4><i class="icon fa fa-check"></i> Proses Berhasil!</h4>
+								                <p>Database telah diperbarui</p>
+								              </div>');
+		redirect('update/penyedia');
+	}
+
 	public function satker()
 	{
 		// UMUM
