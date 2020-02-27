@@ -8,8 +8,8 @@
     <input type="password" class="form-control" name="password" id="password" placeholder="Kata Sandi" required>
     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
   </div>
+  <?=$img; ?>
   <div class="form-group has-feedback">
-    <?php echo $img; ?>
   </div>
   <div class="row">
     <div class="col-xs-8">
