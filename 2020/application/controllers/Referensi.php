@@ -25,6 +25,10 @@ class Referensi extends CI_Controller {
 		$data['subjudul'] = "Referensi";
 		$data['jenis_pengadaan'] = $this->rup->jenis_pengadaan()->result_array();
 		$data['metode_pemilihan'] = $this->rup->metode_pemilihan()->result_array();
+		$data['apbd_penyedia'] = $this->rup->apbd_penyedia()->result_array();
+		$data['apbd_swakelola'] = $this->rup->apbd_swakelola()->result_array();
+		$data['apbn_penyedia'] = $this->rup->apbn_penyedia()->result_array();
+		$data['apbn_swakelola'] = $this->rup->apbn_swakelola()->result_array();
 		$data['satker'] = $this->rup->satker();
 		$this->template->load('template', 'referensi/index', $data);
 	}

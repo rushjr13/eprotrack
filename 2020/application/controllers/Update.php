@@ -105,6 +105,34 @@ class Update extends CI_Controller {
 					$jenis_pengadaan = $py['jenis_pengadaan'];
 					break;
 			}
+
+			switch ($py['sumber_dana']) {
+				case 'APBD,APBD':
+					$sumber_dana = 'APBD';
+					break;
+				case 'APBD,APBD,APBD':
+					$sumber_dana = 'APBD';
+					break;
+				case 'APBD,APBD,APBD,APBD':
+					$sumber_dana = 'APBD';
+					break;
+				case 'APBD,APBD,APBD,APBD,APBD':
+					$sumber_dana = 'APBD';
+					break;
+				case 'APBD,APBD,APBD,APBD,APBD,APBD':
+					$sumber_dana = 'APBD';
+					break;
+				case 'APBD,APBD,APBD,APBD,APBD,APBD,APBD':
+					$sumber_dana = 'APBD';
+					break;
+				case 'APBN,APBN':
+					$sumber_dana = 'APBN';
+					break;
+				
+				default:
+					$sumber_dana = $py['sumber_dana'];
+					break;
+			}
 			$data = [
 				'kode_rup'=>$py['kode_rup'],
 				'kode_kldi'=>$py['kode_kldi'],
@@ -123,7 +151,7 @@ class Update extends CI_Controller {
 				'pagu_rup'=>$py['pagu_rup'],
 				'lokasi'=>$py['lokasi'],
 				'detail_lokasi'=>$py['detail_lokasi'],
-				'sumber_dana'=>$py['sumber_dana'],
+				'sumber_dana'=>$sumber_dana,
 				'metode_pemilihan'=>$py['metode_pemilihan'],
 				'jenis_pengadaan'=>$jenis_pengadaan,
 				'pagu_perjenis_pengadaan'=>$py['pagu_perjenis_pengadaan'],
@@ -193,6 +221,18 @@ class Update extends CI_Controller {
 
 		// LOOPING DATA JSON DAN SIMPAN DI TABEL
 		foreach ($swakelola as $swk) {
+			switch ($swk['sumber_dana']) {
+				case 'APBD,APBD':
+					$sumber_dana = 'APBD';
+					break;
+				case 'APBD,APBD,APBD':
+					$sumber_dana = 'APBD';
+					break;
+				
+				default:
+					$sumber_dana = $swk['sumber_dana'];
+					break;
+			}
 			$data = [
 				'kode_rup'=>$swk['kode_rup'],
 				'kode_kldi'=>$swk['kode_kldi'],
@@ -210,7 +250,7 @@ class Update extends CI_Controller {
 				'pagu_rup'=>$swk['pagu_rup'],
 				'lokasi'=>$swk['lokasi'],
 				'detail_lokasi'=>$swk['detail_lokasi'],
-				'sumber_dana'=>$swk['sumber_dana'],
+				'sumber_dana'=>$sumber_dana,
 				'deskripsi'=>$swk['deskripsi'],
 				'awal_pekerjaan'=>$swk['awal_pekerjaan'],
 				'akhir_pekerjaan'=>$swk['akhir_pekerjaan'],
@@ -243,6 +283,170 @@ class Update extends CI_Controller {
 		redirect('update/swakelola');
 	}
 
+	public function tender()
+	{
+		// UMUM
+		$username = $this->session->userdata('username');
+		if($username){
+			$data['pengguna_masuk'] = $this->pengguna->get($username)->row_array();
+		}else{
+			$data['pengguna_masuk'] = "";
+		}
+
+		// KHUSUS
+		$data['judul'] = "Master";
+		$data['subjudul'] = "Update Data Tender";
+
+		$rup = rup('offline');
+		$data['json'] = $rup['tender'];
+		$data['db'] = $this->rup->tender();
+		$this->template->load('template', 'update/tender', $data);
+	}
+
+	public function tender_proses()
+	{
+		$rup = rup('offline');
+		$penyedia = $rup['penyedia'];
+
+		// MENGOSONGKAN TABEL
+		$this->db->empty_table('penyedia');
+
+		// LOOPING DATA JSON DAN SIMPAN DI TABEL
+		foreach ($penyedia as $py) {
+			switch ($py['jenis_pengadaan']) {
+				case 'Barang;Barang':
+					$jenis_pengadaan = 'Barang';
+					break;
+				case 'Barang;Barang;Barang':
+					$jenis_pengadaan = 'Barang';
+					break;
+				case 'Barang;Barang;Barang;Barang':
+					$jenis_pengadaan = 'Barang';
+					break;
+				case 'Barang;Barang;Barang;Barang;Barang':
+					$jenis_pengadaan = 'Barang';
+					break;
+				case 'Barang;Barang;Barang;Barang;Barang;Barang':
+					$jenis_pengadaan = 'Barang';
+					break;
+				case 'Jasa Konsultansi;Jasa Konsultansi':
+					$jenis_pengadaan = 'Jasa Konsultansi';
+					break;
+				case 'Jasa Lainnya;Barang;Barang;Barang;Barang;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Barang;Barang;Barang;Barang;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya':
+					$jenis_pengadaan = 'Jasa Lainnya';
+					break;
+				case 'Jasa Lainnya;Jasa Lainnya':
+					$jenis_pengadaan = 'Jasa Lainnya';
+					break;
+				case 'Jasa Lainnya;Jasa Lainnya;Jasa Lainnya':
+					$jenis_pengadaan = 'Jasa Lainnya';
+					break;
+				case 'Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya':
+					$jenis_pengadaan = 'Jasa Lainnya';
+					break;
+				case 'Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya':
+					$jenis_pengadaan = 'Jasa Lainnya';
+					break;
+				case 'Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya':
+					$jenis_pengadaan = 'Jasa Lainnya';
+					break;
+				case 'Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya':
+					$jenis_pengadaan = 'Jasa Lainnya';
+					break;
+				case 'Pekerjaan Konstruksi;Pekerjaan Konstruksi':
+					$jenis_pengadaan = 'Pekerjaan Konstruksi';
+					break;				
+				
+				default:
+					$jenis_pengadaan = $py['jenis_pengadaan'];
+					break;
+			}
+
+			switch ($py['sumber_dana']) {
+				case 'APBD,APBD':
+					$sumber_dana = 'APBD';
+					break;
+				case 'APBD,APBD,APBD':
+					$sumber_dana = 'APBD';
+					break;
+				case 'APBD,APBD,APBD,APBD':
+					$sumber_dana = 'APBD';
+					break;
+				case 'APBD,APBD,APBD,APBD,APBD':
+					$sumber_dana = 'APBD';
+					break;
+				case 'APBD,APBD,APBD,APBD,APBD,APBD':
+					$sumber_dana = 'APBD';
+					break;
+				case 'APBD,APBD,APBD,APBD,APBD,APBD,APBD':
+					$sumber_dana = 'APBD';
+					break;
+				case 'APBN,APBN':
+					$sumber_dana = 'APBN';
+					break;
+				
+				default:
+					$sumber_dana = $py['sumber_dana'];
+					break;
+			}
+			$data = [
+				'kode_rup'=>$py['kode_rup'],
+				'kode_kldi'=>$py['kode_kldi'],
+				'kldi'=>$py['kldi'],
+				'jenis'=>$py['jenis'],
+				'id_satker'=>$py['id_satker'],
+				'kode_satker_asli'=>$py['kode_satker_asli'],
+				'nama_satker'=>$py['nama_satker'],
+				'kode_string_program'=>$py['kode_string_program'],
+				'program'=>$py['program'],
+				'kode_string_kegiatan'=>$py['kode_string_kegiatan'],
+				'kegiatan'=>$py['kegiatan'],
+				'mak'=>$py['mak'],
+				'nama_paket'=>$py['nama_paket'],
+				'volume'=>$py['volume'],
+				'pagu_rup'=>$py['pagu_rup'],
+				'lokasi'=>$py['lokasi'],
+				'detail_lokasi'=>$py['detail_lokasi'],
+				'sumber_dana'=>$sumber_dana,
+				'metode_pemilihan'=>$py['metode_pemilihan'],
+				'jenis_pengadaan'=>$jenis_pengadaan,
+				'pagu_perjenis_pengadaan'=>$py['pagu_perjenis_pengadaan'],
+				'spesifikasi'=>$py['spesifikasi'],
+				'deskripsi'=>$py['deskripsi'],
+				'awal_pengadaan'=>$py['awal_pengadaan'],
+				'akhir_pengadaan'=>$py['akhir_pengadaan'],
+				'awal_pekerjaan'=>$py['awal_pekerjaan'],
+				'akhir_pekerjaan'=>$py['akhir_pekerjaan'],
+				'tanggal_kebutuhan'=>$py['tanggal_kebutuhan'],
+				'nama_kpa'=>$py['nama_kpa'],
+				'nip_kpa'=>$py['nip_kpa'],
+				'nama_ppk'=>$py['nama_ppk'],
+				'nip_ppk'=>$py['nip_ppk'],
+				'id_swakelola'=>$py['id_swakelola'],
+				'penyedia_didalam_swakelola'=>$py['penyedia_didalam_swakelola'],
+				'id_client'=>$py['id_client'],
+				'tkdn'=>$py['tkdn'],
+				'pradipa'=>$py['pradipa'],
+				'umkm'=>$py['umkm'],
+				'status_aktif'=>$py['status_aktif'],
+				'status_umumkan'=>$py['status_umumkan'],
+				'tanggal_terakhir_di_update'=>$py['tanggal_terakhir_di_update'],
+			];
+			$this->db->insert('penyedia', $data);
+		}
+		$data_udt = [
+			'id_udt'=>time(),
+			'keterangan'=>'Pembaruan data Paket Penyedia',
+			'username'=>$this->session->userdata('username')
+		];
+		$this->db->insert('update_data_terakhir', $data_udt);
+		$this->session->set_flashdata('info', '<div class="callout callout-success">
+													<h4><i class="icon fa fa-check"></i> Proses Berhasil!</h4>
+								                <p>Database telah diperbarui</p>
+								              </div>');
+		redirect('update/penyedia');
+	}
+
 	public function satker()
 	{
 		// UMUM
@@ -271,6 +475,10 @@ class Update extends CI_Controller {
 		$this->db->empty_table('satker');
 		$this->db->empty_table('jenis_pengadaan');
 		$this->db->empty_table('metode_pemilihan');
+		$this->db->empty_table('apbd_penyedia');
+		$this->db->empty_table('apbn_penyedia');
+		$this->db->empty_table('apbd_penyedia');
+		$this->db->empty_table('apbn_penyedia');
 
 		// LOOPING DATA JSON DAN SIMPAN DI TABEL
 		foreach ($penyedia as $py) {
@@ -343,6 +551,40 @@ class Update extends CI_Controller {
 				$this->db->where('nama_mp', $nama_mp);
 				$this->db->update('metode_pemilihan');
 			}
+
+			// SUMBER DANA
+			// APBD
+			$apbd_penyedia = $this->rup->apbd_penyedia($py['sumber_dana'])->row_array();
+			if(!$apbd_penyedia){
+				$data_apbd_penyedia = [
+					'id_apbd_penyedia'=>$py['kode_rup'],
+					'nama_apbd_penyedia'=>$py['sumber_dana'],
+				];
+				$this->db->insert('apbd_penyedia', $data_apbd_penyedia);
+			}else{
+				$data_apbd_penyedia = [
+					'id_apbd_penyedia'=>$py['kode_rup']
+				];
+				$this->db->set($data_apbd_penyedia);
+				$this->db->where('nama_apbd_penyedia', $py['sumber_dana']);
+				$this->db->update('apbd_penyedia');
+			}
+			// APBN
+			$apbn_penyedia = $this->rup->apbn_penyedia($py['sumber_dana'])->row_array();
+			if(!$apbn_penyedia){
+				$data_apbn_penyedia = [
+					'id_apbn_penyedia'=>$py['kode_rup'],
+					'nama_apbn_penyedia'=>$py['sumber_dana'],
+				];
+				$this->db->insert('apbn_penyedia', $data_apbn_penyedia);
+			}else{
+				$data_apbn_penyedia = [
+					'id_apbn_penyedia'=>$py['kode_rup']
+				];
+				$this->db->set($data_apbn_penyedia);
+				$this->db->where('nama_apbn_penyedia', $py['sumber_dana']);
+				$this->db->update('apbn_penyedia');
+			}
 		}
 
 		foreach ($swakelola as $swk) {
@@ -362,6 +604,40 @@ class Update extends CI_Controller {
 				$this->db->set($data);
 				$this->db->where('kode_satker_asli', $swk['kode_satker_asli']);
 				$this->db->update('satker');
+			}
+
+			// SUMBER DANA
+			// APBD
+			$apbd_swakelola = $this->rup->apbd_swakelola($swk['sumber_dana'])->row_array();
+			if(!$apbd_swakelola){
+				$data_apbd_swakelola = [
+					'id_apbd_swakelola'=>$swk['kode_rup'],
+					'nama_apbd_swakelola'=>$swk['sumber_dana'],
+				];
+				$this->db->insert('apbd_swakelola', $data_apbd_swakelola);
+			}else{
+				$data_apbd_swakelola = [
+					'id_apbd_swakelola'=>$swk['kode_rup']
+				];
+				$this->db->set($data_apbd_swakelola);
+				$this->db->where('nama_apbd_swakelola', $swk['sumber_dana']);
+				$this->db->update('apbd_swakelola');
+			}
+			// APBN
+			$apbn_swakelola = $this->rup->apbn_swakelola($swk['sumber_dana'])->row_array();
+			if(!$apbn_swakelola){
+				$data_apbn_swakelola = [
+					'id_apbn_swakelola'=>$swk['kode_rup'],
+					'nama_apbn_swakelola'=>$swk['sumber_dana'],
+				];
+				$this->db->insert('apbn_swakelola', $data_apbn_swakelola);
+			}else{
+				$data_apbn_swakelola = [
+					'id_apbn_swakelola'=>$swk['kode_rup']
+				];
+				$this->db->set($data_apbn_swakelola);
+				$this->db->where('nama_apbn_swakelola', $swk['sumber_dana']);
+				$this->db->update('apbn_swakelola');
 			}
 		}
 

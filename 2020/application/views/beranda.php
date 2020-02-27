@@ -147,7 +147,7 @@
   <div class="box-header with-border">
     <h3 class="box-title">PAGU ANGGARAN</h3>
     <div class="box-tools pull-right">
-      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
       </button>
     </div>
   </div>
@@ -156,7 +156,7 @@
       <thead>
         <tr>
           <th class="text-center" style="vertical-align: middle">NO</th>
-          <th class="text-center" style="vertical-align: middle">OPD</th>
+          <th style="vertical-align: middle">OPD</th>
           <th class="text-center" style="vertical-align: middle">SIMDA Keuangan (Rp)<br><small>(Belanja Langsung)</small></th>
           <th class="text-center" style="vertical-align: middle">SIRUP LKPP (Rp)<br><small>(Tayang RUP)</small></th>
           <th class="text-center" style="vertical-align: middle">SELISIH (Rp)</th>
@@ -167,7 +167,7 @@
           <tr>
             <td width="3%" style="vertical-align: middle" class="text-center"><?=$no++ ?></td>
             <td style="vertical-align: middle"><?=$sk['nama_satker'] ?></td>
-            <td width="15%" style="vertical-align: middle" class="text-right"><?=number_format($sk['pagu_simda'], 0, ',', '.') ?></td>
+            <td width="9%" style="vertical-align: middle" class="text-right"><?=number_format($sk['pagu_simda'], 0, ',', '.') ?></td>
             <?php
               // PENYEDIA
               $paket_penyedia_satker = $this->db->get_where('penyedia', ['kode_satker_asli'=>$sk['kode_satker_asli']]);
@@ -192,8 +192,20 @@
               $jlh_paket_satker = $jlh_paket_penyedia_satker+$jlh_paket_swakelola_satker;
               $jlh_pagu_satker = $jlh_pagu_penyedia_satker+$jlh_pagu_swakelola_satker;
             ?>
-            <td width="15%" style="vertical-align: middle" class="text-right"><?=number_format($jlh_pagu_satker, 0, ',', '.') ?></td>
-            <td width="15%" style="vertical-align: middle" class="text-right"><?=number_format(($sk['pagu_simda']-$jlh_pagu_satker), 0, ',', '.') ?></td>
+            <td width="9%" style="vertical-align: middle" class="text-right"><?=number_format($jlh_pagu_satker, 0, ',', '.') ?></td>
+            <?php
+              if($sk['pagu_simda']>$jlh_pagu_satker){
+                $warna = 'bg-danger';
+                $title = 'Kurang';
+              }else if($sk['pagu_simda']<$jlh_pagu_satker){
+                $warna = 'bg-warning';
+                $title = 'Lebih';
+              }else{
+                $warna = 'bg-success';
+                $title = 'Sama';
+              }
+            ?>
+            <td width="9%" style="vertical-align: middle" class="text-right <?=$warna ?>" data-toggle="tooltip" title="<?=$title ?>"><strong><?=number_format(($jlh_pagu_satker-$sk['pagu_simda']), 0, ',', '.') ?></strong></td>
           </tr>
         <?php endforeach ?>
       </tbody>
@@ -205,7 +217,7 @@
   <div class="box-header with-border">
     <h3 class="box-title">RPP</h3>
     <div class="box-tools pull-right">
-      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
       </button>
     </div>
   </div>
@@ -270,8 +282,13 @@
           </div>
           <div class="box-body">
             <div class="row">
+<<<<<<< HEAD
               <div class="col-md-12 col-xs-12">
                 <div id="donut-chart-jp" style="height: 265px;"></div>
+=======
+              <div class="col-md-6 col-xs-12">
+                <div id="donut-chart-mp" style="height: 265px;"></div>
+>>>>>>> fbe9de5ee26db3bdec22f088445bccff384e0ac6
               </div>
               <div class="col-md-12 col-xs-12">
                 <ul class="todo-list">
@@ -318,7 +335,7 @@
   <div class="box-header with-border">
     <h3 class="box-title">JENIS PENGADAAN</h3>
     <div class="box-tools pull-right">
-      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
       </button>
     </div>
   </div>
@@ -327,8 +344,8 @@
       <thead>
         <tr>
           <th class="text-center" style="vertical-align: middle">NO</th>
-          <th class="text-center" style="vertical-align: middle">OPD</th>
-          <th class="text-center" style="vertical-align: middle">PAKET</th>
+          <th style="vertical-align: middle">OPD</th>
+          <th class="text-center" style="vertical-align: middle">PAKET<br><small>(Penyedia)</small></th>
           <th class="text-center" style="vertical-align: middle">KONSTRUKSI</th>
           <th class="text-center" style="vertical-align: middle">KONSULTANSI</th>
           <th class="text-center" style="vertical-align: middle">BARANG</th>
@@ -338,7 +355,7 @@
       <tbody>
         <?php $no=1; foreach ($satker->result_array() as $sk): ?>
           <?php
-            $paket = $this->rup->paket_skpd($sk['kode_satker_asli'])->num_rows();
+            $paket_penyedia = $this->rup->paket_penyedia_skpd($sk['kode_satker_asli'])->num_rows();
             $jp_konstruksi = $this->rup->jp_konstruksi_skpd($sk['kode_satker_asli'])->num_rows();
             $jp_konsultansi = $this->rup->jp_konsultansi_skpd($sk['kode_satker_asli'])->num_rows();
             $jp_barang = $this->rup->jp_barang_skpd($sk['kode_satker_asli'])->num_rows();
@@ -347,11 +364,11 @@
           <tr>
             <td class="text-center" style="vertical-align: middle" width="2%"><?=$no++ ?></td>
             <td style="vertical-align: middle"><?=$sk['nama_satker'] ?></td>
-            <td class="text-center" style="vertical-align: middle" width="9%"><?=$paket ?></td>
-            <td class="text-center" style="vertical-align: middle" width="9%"><?=$jp_konstruksi ?></td>
-            <td class="text-center" style="vertical-align: middle" width="9%"><?=$jp_konsultansi ?></td>
-            <td class="text-center" style="vertical-align: middle" width="9%"><?=$jp_barang ?></td>
-            <td class="text-center" style="vertical-align: middle" width="9%"><?=$jp_jasa ?></td>
+            <td class="text-center" style="vertical-align: middle" width="8%"><?=$paket_penyedia ?></td>
+            <td class="text-center" style="vertical-align: middle" width="8%"><?=$jp_konstruksi ?></td>
+            <td class="text-center" style="vertical-align: middle" width="8%"><?=$jp_konsultansi ?></td>
+            <td class="text-center" style="vertical-align: middle" width="8%"><?=$jp_barang ?></td>
+            <td class="text-center" style="vertical-align: middle" width="8%"><?=$jp_jasa ?></td>
           </tr>
         <?php endforeach ?>
       </tbody>
@@ -363,37 +380,40 @@
   <div class="box-header with-border">
     <h3 class="box-title">METODE PEMILIHAN</h3>
     <div class="box-tools pull-right">
-      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+      <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
       </button>
     </div>
   </div>
   <div class="box-body table-responsive">
-    <table class="table table-sm table-bordered table-striped table-hover small" width="100%" cellspacing="0">
+    <table class="table table-sm table-bordered table-striped table-hover" width="100%" cellspacing="0">
       <thead>
         <tr>
           <th rowspan="2" class="text-center" style="vertical-align: middle">NO</th>
-          <th rowspan="2" class="text-center" style="vertical-align: middle">OPD</th>
-          <th rowspan="2" class="text-center" style="vertical-align: middle">PAKET</th>
-          <th rowspan="2" class="text-center" style="vertical-align: middle">SELEKSI</th>
-          <th rowspan="2" class="text-center" style="vertical-align: middle">TENDER</th>
-          <th rowspan="2" class="text-center" style="vertical-align: middle">TENDER<br>CEPAT</th>
-          <th rowspan="2" class="text-center" style="vertical-align: middle">E-PURCHASING</th>
-          <th rowspan="2" class="text-center" style="vertical-align: middle">PENUNJUKAN<br>LANGSUNG</th>
-          <th rowspan="2" class="text-center" style="vertical-align: middle">PENGADAAN<br>LANGSUNG</th>
-          <th rowspan="2" class="text-center" style="vertical-align: middle">DIKECUALIKAN</th>
-          <th colspan="4" class="text-center" style="vertical-align: middle">SWAKELOLA</th>
+          <th rowspan="2" style="vertical-align: middle">OPD</th>
+          <th colspan="8" class="text-center" style="vertical-align: middle">PENYEDIA</th>
+          <th colspan="5" class="text-center bg-warning" style="vertical-align: middle">SWAKELOLA</th>
         </tr>
         <tr>
-          <th class="text-center" style="vertical-align: middle">Tipe 1</th>
-          <th class="text-center" style="vertical-align: middle">Tipe 2</th>
-          <th class="text-center" style="vertical-align: middle">Tipe 3</th>
-          <th class="text-center" style="vertical-align: middle">Tipe 4</th>
+          <th class="text-center" style="vertical-align: middle">PAKET</th>
+          <th class="text-center" style="vertical-align: middle">SELEKSI</th>
+          <th class="text-center" style="vertical-align: middle">TENDER</th>
+          <th class="text-center" style="vertical-align: middle">TENDER<br>CEPAT</th>
+          <th class="text-center" style="vertical-align: middle">E-PURCHASING</th>
+          <th class="text-center" style="vertical-align: middle">PENUNJUKAN<br>LANGSUNG</th>
+          <th class="text-center" style="vertical-align: middle">PENGADAAN<br>LANGSUNG</th>
+          <th class="text-center" style="vertical-align: middle">DIKECUALIKAN</th>
+          <th class="text-center bg-warning" style="vertical-align: middle">PAKET</th>
+          <th class="text-center bg-warning" style="vertical-align: middle">Tipe 1</th>
+          <th class="text-center bg-warning" style="vertical-align: middle">Tipe 2</th>
+          <th class="text-center bg-warning" style="vertical-align: middle">Tipe 3</th>
+          <th class="text-center bg-warning" style="vertical-align: middle">Tipe 4</th>
         </tr>
       </thead>
       <tbody>
         <?php $no=1; foreach ($satker->result_array() as $sk): ?>
           <?php
-            $paket = $this->rup->paket_skpd($sk['kode_satker_asli'])->num_rows();
+            $paket_penyedia = $this->rup->paket_penyedia_skpd($sk['kode_satker_asli'])->num_rows();
+            $paket_swakelola = $this->rup->paket_swakelola_skpd($sk['kode_satker_asli'])->num_rows();
             $mp_dikecualikan = $this->rup->mp_dikecualikan_skpd($sk['kode_satker_asli'])->num_rows();
             $mp_purchasing = $this->rup->mp_purchasing_skpd($sk['kode_satker_asli'])->num_rows();
             $mp_pl = $this->rup->mp_pl_skpd($sk['kode_satker_asli'])->num_rows();
@@ -401,22 +421,27 @@
             $mp_seleksi = $this->rup->mp_seleksi_skpd($sk['kode_satker_asli'])->num_rows();
             $mp_tender = $this->rup->mp_tender_skpd($sk['kode_satker_asli'])->num_rows();
             $mp_tc = $this->rup->mp_tc_skpd($sk['kode_satker_asli'])->num_rows();
+            $swakelola1 = $this->rup->swakelola1_skpd($sk['kode_satker_asli'])->num_rows();
+            $swakelola2 = $this->rup->swakelola2_skpd($sk['kode_satker_asli'])->num_rows();
+            $swakelola3 = $this->rup->swakelola3_skpd($sk['kode_satker_asli'])->num_rows();
+            $swakelola4 = $this->rup->swakelola4_skpd($sk['kode_satker_asli'])->num_rows();
           ?>
           <tr>
             <td class="text-center" style="vertical-align: middle" width="2%"><?=$no++ ?></td>
             <td style="vertical-align: middle"><?=$sk['nama_satker'] ?></td>
-            <td class="text-center" style="vertical-align: middle" width="5%"><?=$paket ?></td>
-            <td class="text-center" style="vertical-align: middle" width="9%"><?=$mp_seleksi ?></td>
+            <td class="text-center" style="vertical-align: middle" width="5%"><?=$paket_penyedia ?></td>
+            <td class="text-center" style="vertical-align: middle" width="5%"><?=$mp_seleksi ?></td>
             <td class="text-center" style="vertical-align: middle" width="5%"><?=$mp_tender ?></td>
             <td class="text-center" style="vertical-align: middle" width="5%"><?=$mp_tc ?></td>
             <td class="text-center" style="vertical-align: middle" width="5%"><?=$mp_purchasing ?></td>
-            <td class="text-center" style="vertical-align: middle" width="9%"><?=$mp_pl2 ?></td>
-            <td class="text-center" style="vertical-align: middle" width="9%"><?=$mp_pl ?></td>
+            <td class="text-center" style="vertical-align: middle" width="5%"><?=$mp_pl2 ?></td>
+            <td class="text-center" style="vertical-align: middle" width="5%"><?=$mp_pl ?></td>
             <td class="text-center" style="vertical-align: middle" width="5%"><?=$mp_dikecualikan ?></td>
-            <td class="text-center" style="vertical-align: middle" width="5%">0</td>
-            <td class="text-center" style="vertical-align: middle" width="5%">0</td>
-            <td class="text-center" style="vertical-align: middle" width="9%">0</td>
-            <td class="text-center" style="vertical-align: middle" width="9%">0</td>
+            <td class="text-center bg-warning" style="vertical-align: middle" width="5%"><?=$paket_swakelola ?></td>
+            <td class="text-center bg-warning" style="vertical-align: middle" width="5%"><?=$swakelola1 ?></td>
+            <td class="text-center bg-warning" style="vertical-align: middle" width="5%"><?=$swakelola2 ?></td>
+            <td class="text-center bg-warning" style="vertical-align: middle" width="5%"><?=$swakelola3 ?></td>
+            <td class="text-center bg-warning" style="vertical-align: middle" width="5%"><?=$swakelola4 ?></td>
           </tr>
         <?php endforeach ?>
       </tbody>
