@@ -8,6 +8,9 @@
     <input type="password" class="form-control" name="password" id="password" placeholder="Kata Sandi" required>
     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
   </div>
+  <div class="form-group has-feedback">
+    <?php echo $img; ?>
+  </div>
   <div class="row">
     <div class="col-xs-8">
       <a href="<?=base_url('lupa_sandi')?>">Lupa Kata Sandi</a><br>
