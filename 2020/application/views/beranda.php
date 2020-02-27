@@ -220,10 +220,10 @@
           </div>
           <div class="box-body">
             <div class="row">
-              <div class="col-md-6 col-xs-12">
+              <div class="col-md-12 col-xs-12">
                 <div id="donut-chart-jp" style="height: 265px;"></div>
               </div>
-              <div class="col-md-6 col-xs-12">
+              <div class="col-md-12 col-xs-12">
                 <ul class="todo-list">
                   <?php foreach ($jp as $jp): ?>
                     <?php
@@ -270,10 +270,10 @@
           </div>
           <div class="box-body">
             <div class="row">
-              <div class="col-md-6 col-xs-12">
+              <div class="col-md-12 col-xs-12">
                 <div id="donut-chart-jp" style="height: 265px;"></div>
               </div>
-              <div class="col-md-6 col-xs-12">
+              <div class="col-md-12 col-xs-12">
                 <ul class="todo-list">
                   <?php foreach ($mp as $mp): ?>
                     <?php
