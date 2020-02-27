@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-6 col-xs-12">
-    <div class="box box-primary">
+    <div class="box box-danger box-solid">
       <div class="box-header with-border">
         <h3 class="box-title">PROGRAM & KEGIATAN</h3>
         <div class="box-tools pull-right">
@@ -42,7 +42,7 @@
     </div>
   </div>
   <div class="col-md-6 col-xs-12">
-    <div class="box box-primary">
+    <div class="box box-primary box-solid">
       <div class="box-header with-border">
         <h3 class="box-title">PAKET</h3>
         <div class="box-tools pull-right">
@@ -87,7 +87,7 @@
 </div>
 
 
-<div class="box box-primary">
+<div class="box box-warning box-solid">
   <div class="box-header with-border">
     <h3 class="box-title">ANGGARAN BELANJA</h3>
     <div class="box-tools pull-right">
@@ -167,7 +167,7 @@
           <tr>
             <td width="3%" style="vertical-align: middle" class="text-center"><?=$no++ ?></td>
             <td style="vertical-align: middle"><?=$sk['nama_satker'] ?></td>
-            <td width="9%" style="vertical-align: middle" class="text-right"><?=number_format($sk['pagu_simda'], 0, ',', '.') ?></td>
+            <td width="12%" style="vertical-align: middle" class="text-right"><?=number_format($sk['pagu_simda'], 0, ',', '.') ?></td>
             <?php
               // PENYEDIA
               $paket_penyedia_satker = $this->db->get_where('penyedia', ['kode_satker_asli'=>$sk['kode_satker_asli']]);
@@ -192,7 +192,7 @@
               $jlh_paket_satker = $jlh_paket_penyedia_satker+$jlh_paket_swakelola_satker;
               $jlh_pagu_satker = $jlh_pagu_penyedia_satker+$jlh_pagu_swakelola_satker;
             ?>
-            <td width="9%" style="vertical-align: middle" class="text-right"><?=number_format($jlh_pagu_satker, 0, ',', '.') ?></td>
+            <td width="12%" style="vertical-align: middle" class="text-right"><?=number_format($jlh_pagu_satker, 0, ',', '.') ?></td>
             <?php
               if($sk['pagu_simda']>$jlh_pagu_satker){
                 $warna = 'bg-danger';
@@ -205,7 +205,7 @@
                 $title = 'Sama';
               }
             ?>
-            <td width="9%" style="vertical-align: middle" class="text-right <?=$warna ?>" data-toggle="tooltip" title="<?=$title ?>"><strong><?=number_format(($jlh_pagu_satker-$sk['pagu_simda']), 0, ',', '.') ?></strong></td>
+            <td width="12%" style="vertical-align: middle" class="text-right <?=$warna ?>" data-toggle="tooltip" title="<?=$title ?>"><strong><?=number_format(($jlh_pagu_satker-$sk['pagu_simda']), 0, ',', '.') ?></strong></td>
           </tr>
         <?php endforeach ?>
       </tbody>
@@ -282,13 +282,8 @@
           </div>
           <div class="box-body">
             <div class="row">
-<<<<<<< HEAD
               <div class="col-md-12 col-xs-12">
                 <div id="donut-chart-jp" style="height: 265px;"></div>
-=======
-              <div class="col-md-6 col-xs-12">
-                <div id="donut-chart-mp" style="height: 265px;"></div>
->>>>>>> fbe9de5ee26db3bdec22f088445bccff384e0ac6
               </div>
               <div class="col-md-12 col-xs-12">
                 <ul class="todo-list">
