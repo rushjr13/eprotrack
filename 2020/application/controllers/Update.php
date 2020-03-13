@@ -486,8 +486,8 @@ class Update extends CI_Controller {
 		$this->db->empty_table('metode_pemilihan');
 		$this->db->empty_table('apbd_penyedia');
 		$this->db->empty_table('apbn_penyedia');
-		$this->db->empty_table('apbd_penyedia');
-		$this->db->empty_table('apbn_penyedia');
+		$this->db->empty_table('apbd_swakelola');
+		$this->db->empty_table('apbn_swakelola');
 
 		// LOOPING DATA JSON DAN SIMPAN DI TABEL
 		foreach ($penyedia as $py) {

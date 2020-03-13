@@ -6,7 +6,8 @@
   				<th style="vertical-align: middle" class="text-center">NO</th>
 	        <th style="vertical-align: middle" class="text-center">KODE RUP</th>
 					<th style="vertical-align: middle" class="text-center">NAMA PAKET</th>
-	        <th style="vertical-align: middle" class="text-center">PAGU (Rp)</th>
+          <th style="vertical-align: middle" class="text-center">PAGU (Rp)</th>
+	        <th style="vertical-align: middle" class="text-center">PPK</th>
   			</tr>
   		</thead>
   		<tbody>
@@ -28,16 +29,18 @@
 	              $bg = 'gray';
 	            }
 	  				?>
-	  				<td style="vertical-align: middle" class="text-center" width="8%"><?=$jp['kode_rup'] ?></td>
+            <td style="vertical-align: middle" class="text-center" width="8%"><?=$jp['kode_rup'] ?></td>
 	  				<td style="vertical-align: middle" ><a style="cursor: pointer" id="tbldatapenyedia" data-id="<?=$jp['kode_rup'] ?>"><?=$jp['nama_paket'] ?></a><small class="label pull-right bg-<?=$bg ?>"><?=$jp['metode_pemilihan'] ?></small></td>
 	  				<td style="vertical-align: middle" class="text-right"><?=number_format($jp['pagu_rup'], 0, ',', '.') ?></td>
+	  				<td style="vertical-align: middle" class="text-center"><?=$jp['nama_ppk'] ?></td>
 	  			</tr>
   			<?php endforeach ?>
   		</tbody>
   		<tfoot>
   			<tr>
   				<th style="vertical-align: middle" colspan="3" class="text-right">TOTAL PAGU ANGGARAN (Rp)</th>
-  				<th style="vertical-align: middle" class="text-right"><?=number_format($total, 0, ',', '.') ?></th>
+          <th style="vertical-align: middle" class="text-right"><?=number_format($total, 0, ',', '.') ?></th>
+  				<th style="vertical-align: middle" class="text-center">&nbsp;</th>
   			</tr>
   		</tfoot>
   	</table>
