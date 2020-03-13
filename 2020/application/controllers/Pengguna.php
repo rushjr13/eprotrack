@@ -15,6 +15,7 @@ class Pengguna extends CI_Controller {
 		$username = $this->session->userdata('username');
 		$data['pengguna_masuk'] = $this->pengguna->get($username)->row_array();
 		$level_pengguna = $data['pengguna_masuk']['id_level'];
+		$data['pengaturan'] = $this->admin->pengaturan();
 
 		// KHUSUS
 		if($level_pengguna==1){
@@ -37,6 +38,7 @@ class Pengguna extends CI_Controller {
 		$username = $this->session->userdata('username');
 		$data['pengguna_masuk'] = $this->pengguna->get($username)->row_array();
 		$level_pengguna = $data['pengguna_masuk']['id_level'];
+		$data['pengaturan'] = $this->admin->pengaturan();
 
 		// KHUSUS
 		if($level_pengguna==1){
@@ -101,6 +103,7 @@ class Pengguna extends CI_Controller {
 		$username = $this->session->userdata('username');
 		$data['pengguna_masuk'] = $this->pengguna->get($username)->row_array();
 		$level_pengguna = $data['pengguna_masuk']['id_level'];
+		$data['pengaturan'] = $this->admin->pengaturan();
 
 		// KHUSUS
 		if($level_pengguna==1){
@@ -172,6 +175,7 @@ class Pengguna extends CI_Controller {
 		$username = $this->session->userdata('username');
 		$data['pengguna_masuk'] = $this->pengguna->get($username)->row_array();
 		$level_pengguna = $data['pengguna_masuk']['id_level'];
+		$data['pengaturan'] = $this->admin->pengaturan();
 
 		// KHUSUS
 		if($username==null){
@@ -252,6 +256,7 @@ class Pengguna extends CI_Controller {
 		$username = $this->session->userdata('username');
 		$data['pengguna_masuk'] = $this->pengguna->get($username)->row_array();
 		$level_pengguna = $data['pengguna_masuk']['id_level'];
+		$data['pengaturan'] = $this->admin->pengaturan();
 
 		// KHUSUS
 		if($level_pengguna==1){
@@ -293,6 +298,7 @@ class Pengguna extends CI_Controller {
 		$username = $this->session->userdata('username');
 		$data['pengguna_masuk'] = $this->pengguna->get($username)->row_array();
 		$level_pengguna = $data['pengguna_masuk']['id_level'];
+		$data['pengaturan'] = $this->admin->pengaturan();
 
 		// KHUSUS
 		if($level_pengguna==1){

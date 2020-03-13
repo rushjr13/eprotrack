@@ -19,6 +19,7 @@ class Update extends CI_Controller {
 		}else{
 			$data['pengguna_masuk'] = "";
 		}
+		$data['pengaturan'] = $this->admin->pengaturan();
 
 		// KHUSUS
 		$data['judul'] = "Master";
@@ -36,6 +37,7 @@ class Update extends CI_Controller {
 		}else{
 			$data['pengguna_masuk'] = "";
 		}
+		$data['pengaturan'] = $this->admin->pengaturan();
 
 		// KHUSUS
 		$data['judul'] = "Master";
@@ -49,7 +51,8 @@ class Update extends CI_Controller {
 
 	public function penyedia_proses()
 	{
-		$rup = rup('offline');
+		$pengaturan = $this->admin->pengaturan();
+		$rup = rup($pengaturan['jaringan']);
 		$penyedia = $rup['penyedia'];
 
 		// MENGOSONGKAN TABEL
@@ -200,6 +203,7 @@ class Update extends CI_Controller {
 		}else{
 			$data['pengguna_masuk'] = "";
 		}
+		$data['pengaturan'] = $this->admin->pengaturan();
 
 		// KHUSUS
 		$data['judul'] = "Master";
@@ -213,7 +217,8 @@ class Update extends CI_Controller {
 
 	public function swakelola_proses()
 	{
-		$rup = rup('offline');
+		$pengaturan = $this->admin->pengaturan();
+		$rup = rup($pengaturan['jaringan']);
 		$swakelola = $rup['swakelola'];
 
 		// MENGOSONGKAN TABEL
@@ -292,6 +297,7 @@ class Update extends CI_Controller {
 		}else{
 			$data['pengguna_masuk'] = "";
 		}
+		$data['pengaturan'] = $this->admin->pengaturan();
 
 		// KHUSUS
 		$data['judul'] = "Master";
@@ -305,7 +311,8 @@ class Update extends CI_Controller {
 
 	public function tender_proses()
 	{
-		$rup = rup('offline');
+		$pengaturan = $this->admin->pengaturan();
+		$rup = rup($pengaturan['jaringan']);
 		$penyedia = $rup['penyedia'];
 
 		// MENGOSONGKAN TABEL
@@ -456,6 +463,7 @@ class Update extends CI_Controller {
 		}else{
 			$data['pengguna_masuk'] = "";
 		}
+		$data['pengaturan'] = $this->admin->pengaturan();
 
 
 		// KHUSUS
@@ -468,6 +476,7 @@ class Update extends CI_Controller {
 
 	public function satker_proses()
 	{
+		$data['pengaturan'] = $this->admin->pengaturan();
 		$penyedia = $this->rup->penyedia()->result_array();
 		$swakelola = $this->rup->swakelola()->result_array();
 
@@ -663,6 +672,7 @@ class Update extends CI_Controller {
 		}else{
 			$data['pengguna_masuk'] = "";
 		}
+		$data['pengaturan'] = $this->admin->pengaturan();
 
 		// KHUSUS
 		$data['judul'] = "Master";
@@ -674,6 +684,7 @@ class Update extends CI_Controller {
 
 	public function program_proses()
 	{
+		$data['pengaturan'] = $this->admin->pengaturan();
 		$penyedia = $this->rup->penyedia()->result_array();
 		$swakelola = $this->rup->swakelola()->result_array();
 
@@ -742,6 +753,7 @@ class Update extends CI_Controller {
 		}else{
 			$data['pengguna_masuk'] = "";
 		}
+		$data['pengaturan'] = $this->admin->pengaturan();
 
 		// KHUSUS
 		$data['judul'] = "Master";
@@ -753,6 +765,7 @@ class Update extends CI_Controller {
 
 	public function kegiatan_proses()
 	{
+		$data['pengaturan'] = $this->admin->pengaturan();
 		$penyedia = $this->rup->penyedia()->result_array();
 		$swakelola = $this->rup->swakelola()->result_array();
 

@@ -19,6 +19,7 @@ class Referensi extends CI_Controller {
 		}else{
 			$data['pengguna_masuk'] = "";
 		}
+		$data['pengaturan'] = $this->admin->pengaturan();
 
 		// KHUSUS
 		$data['judul'] = "Master";
@@ -42,6 +43,7 @@ class Referensi extends CI_Controller {
 		}else{
 			$data['pengguna_masuk'] = "";
 		}
+		$data['pengaturan'] = $this->admin->pengaturan();
 
 		// KHUSUS
 		if($kode_satker_asli==null){

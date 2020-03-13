@@ -19,6 +19,7 @@ class Pkr extends CI_Controller {
 		}else{
 			$data['pengguna_masuk'] = "";
 		}
+		$data['pengaturan'] = $this->admin->pengaturan();
 
 		// KHUSUS
 		$data['judul'] = "Penilaian Kinerja Rekanan";
@@ -36,6 +37,7 @@ class Pkr extends CI_Controller {
 		}else{
 			$data['pengguna_masuk'] = "";
 		}
+		$data['pengaturan'] = $this->admin->pengaturan();
 
 		// KHUSUS
 		$data['judul'] = "Penilaian Kinerja Rekanan";

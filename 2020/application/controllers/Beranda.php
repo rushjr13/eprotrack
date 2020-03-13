@@ -18,6 +18,7 @@ class Beranda extends CI_Controller {
 		}else{
 			$data['pengguna_masuk'] = "";
 		}
+		$data['pengaturan'] = $this->admin->pengaturan();
 
 		// KHUSUS
 		$data['penyedia'] = $this->rup->penyedia();
@@ -223,6 +224,137 @@ class Beranda extends CI_Controller {
 			}
 			redirect(base_url());
 		}
+	}
+
+	public function jp($id, $jenis_pengadaan)
+	{
+		if($jenis_pengadaan=="semua"){
+			$data['jenis_pengadaan'] = $this->rup->paket_penyedia_skpd($id)->result_array();
+		}else if($jenis_pengadaan=="konstruksi"){
+	    $data['jenis_pengadaan'] = $this->rup->jp_konstruksi_skpd($id)->result_array();
+		}else if($jenis_pengadaan=="konsultansi"){
+	    $data['jenis_pengadaan'] = $this->rup->jp_konsultansi_skpd($id)->result_array();
+		}else if($jenis_pengadaan=="barang"){
+	    $data['jenis_pengadaan'] = $this->rup->jp_barang_skpd($id)->result_array();
+		}else if($jenis_pengadaan=="jasa"){
+	    $data['jenis_pengadaan'] = $this->rup->jp_jasa_skpd($id)->result_array();
+		}
+		switch ($jenis_pengadaan) {
+			case 'semua':
+				$data['judul'] = "Semua Paket";
+				break;
+			case 'konstruksi':
+				$data['judul'] = "Pekerjaan Konstruksi";
+				break;
+			case 'konsultansi':
+				$data['judul'] = "Jasa Konsultansi";
+				break;
+			case 'barang':
+				$data['judul'] = "Pengadaan Barang";
+				break;
+			case 'jasa':
+				$data['judul'] = "Pengadaan Jasa Lainnya";
+				break;
+			
+			default:
+				$data['judul'] = $jenis_pengadaan;
+				break;
+		}
+		$data['pengaturan'] = $this->admin->pengaturan();
+		$data['subjudul'] = $this->rup->satker($id)->row_array()['nama_satker'];
+		$this->template->load('beranda/template', 'beranda/jp', $data);
+	}
+
+	public function mp($id, $metode_pemilihan)
+	{
+		if($metode_pemilihan=="semuapenyedia"){
+			$data['metode_pemilihan'] = $this->rup->paket_penyedia_skpd($id)->result_array();
+		}else if($metode_pemilihan=="semuaswakelola"){
+	    $data['metode_pemilihan'] = $this->rup->paket_swakelola_skpd($id)->result_array();
+		}else if($metode_pemilihan=="dikecualikan"){
+	    $data['metode_pemilihan'] = $this->rup->mp_dikecualikan_skpd($id)->result_array();
+		}else if($metode_pemilihan=="purchasing"){
+	    $data['metode_pemilihan'] = $this->rup->mp_purchasing_skpd($id)->result_array();
+		}else if($metode_pemilihan=="pl"){
+	    $data['metode_pemilihan'] = $this->rup->mp_pl_skpd($id)->result_array();
+		}else if($metode_pemilihan=="pl2"){
+	    $data['metode_pemilihan'] = $this->rup->mp_pl2_skpd($id)->result_array();
+		}else if($metode_pemilihan=="seleksi"){
+	    $data['metode_pemilihan'] = $this->rup->mp_seleksi_skpd($id)->result_array();
+		}else if($metode_pemilihan=="tender"){
+	    $data['metode_pemilihan'] = $this->rup->mp_tender_skpd($id)->result_array();
+		}else if($metode_pemilihan=="tc"){
+	    $data['metode_pemilihan'] = $this->rup->mp_tc_skpd($id)->result_array();
+		}else if($metode_pemilihan=="swakelola1"){
+	    $data['metode_pemilihan'] = $this->rup->swakelola1_skpd($id)->result_array();
+		}else if($metode_pemilihan=="swakelola2"){
+	    $data['metode_pemilihan'] = $this->rup->swakelola2_skpd($id)->result_array();
+		}else if($metode_pemilihan=="swakelola3"){
+	    $data['metode_pemilihan'] = $this->rup->swakelola3_skpd($id)->result_array();
+		}else if($metode_pemilihan=="swakelola4"){
+	    $data['metode_pemilihan'] = $this->rup->swakelola4_skpd($id)->result_array();
+		}
+		switch ($metode_pemilihan) {
+			case 'semuapenyedia':
+				$data['judul'] = "Semua Paket Penyedia";
+				$data['paket'] = "penyedia";
+				break;
+			case 'semuaswakelola':
+				$data['judul'] = "Semua Paket Swakelola";
+				$data['paket'] = "swakelola";
+				break;
+			case 'dikecualikan':
+				$data['judul'] = "Paket Dikecualikan";
+				$data['paket'] = "penyedia";
+				break;
+			case 'purchasing':
+				$data['judul'] = "Paket e-Purchasing";
+				$data['paket'] = "penyedia";
+				break;
+			case 'pl':
+				$data['judul'] = "Paket Penunjukan Langsung";
+				$data['paket'] = "penyedia";
+				break;
+			case 'pl2':
+				$data['judul'] = "Paket Pengadaan Langsung";
+				$data['paket'] = "penyedia";
+				break;
+			case 'seleksi':
+				$data['judul'] = "Paket Seleksi";
+				$data['paket'] = "penyedia";
+				break;
+			case 'tender':
+				$data['judul'] = "Paket Tender";
+				$data['paket'] = "penyedia";
+				break;
+			case 'tc':
+				$data['judul'] = "Paket Tender Cepat";
+				$data['paket'] = "penyedia";
+				break;
+			case 'swakelola1':
+				$data['judul'] = "Paket Swakelola Tipe 1";
+				$data['paket'] = "swakelola";
+				break;
+			case 'swakelola2':
+				$data['judul'] = "Paket Swakelola Tipe 2";
+				$data['paket'] = "swakelola";
+				break;
+			case 'swakelola3':
+				$data['judul'] = "Paket Swakelola Tipe 3";
+				$data['paket'] = "swakelola";
+				break;
+			case 'swakelola4':
+				$data['judul'] = "Paket Swakelola Tipe 4";
+				$data['paket'] = "swakelola";
+				break;
+			
+			default:
+				$data['judul'] = $metode_pemilihan;
+				break;
+		}
+		$data['pengaturan'] = $this->admin->pengaturan();
+		$data['subjudul'] = $this->rup->satker($id)->row_array()['nama_satker'];
+		$this->template->load('beranda/template', 'beranda/mp', $data);
 	}
 
 }

@@ -38,8 +38,11 @@ class Auth extends CI_Controller {
 
 	public function index()
 	{
-		// KHUSUS
+		// UMUM
 		cek_sudah_masuk();
+		$data['pengaturan'] = $this->admin->pengaturan();
+
+		// KHUSUS
 		$this->form_validation->set_rules('captcha', 'Captcha','trim|callback_check_captcha|required');
 
 		if($this->form_validation->run()==false){
@@ -91,6 +94,7 @@ class Auth extends CI_Controller {
 	{
 		// KHUSUS
 		cek_sudah_masuk();
+		$data['pengaturan'] = $this->admin->pengaturan();
 		$data['judul'] = "Daftar";
 		$this->template->load('auth/template', 'auth/daftar', $data);
 	}
@@ -99,6 +103,7 @@ class Auth extends CI_Controller {
 	{
 		// KHUSUS
 		cek_sudah_masuk();
+		$data['pengaturan'] = $this->admin->pengaturan();
 		$data['judul'] = "Lupa Kata Sandi";
 		$this->template->load('auth/template', 'auth/lupa_sandi', $data);
 	}

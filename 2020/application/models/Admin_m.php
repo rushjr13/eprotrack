@@ -13,4 +13,12 @@ class Admin_m extends CI_Model {
 		return $this->db->get();
 	}
 
+	public function pengaturan()
+	{
+		$this->db->select('*');
+		$this->db->from('pengaturan');
+		$this->db->where('id', 'atur');
+		return $this->db->get()->row_array();
+	}
+
 }

@@ -6,12 +6,12 @@ class Rup extends CI_Controller {
 	public function __construct()
   {
     parent::__construct();
-    cek_tidak_masuk();
 		date_default_timezone_set('Asia/Makassar');
   }
 
 	public function index()
 	{
+	    cek_tidak_masuk();
 		// UMUM
 		$username = $this->session->userdata('username');
 		if($username){
@@ -19,6 +19,7 @@ class Rup extends CI_Controller {
 		}else{
 			$data['pengguna_masuk'] = "";
 		}
+		$data['pengaturan'] = $this->admin->pengaturan();
 
 		// KHUSUS
 		$data['judul'] = "RUP";
@@ -40,6 +41,7 @@ class Rup extends CI_Controller {
 		}else{
 			$data['pengguna_masuk'] = "";
 		}
+		$data['pengaturan'] = $this->admin->pengaturan();
 
 		// KHUSUS
 		if($id==null){
@@ -61,6 +63,7 @@ class Rup extends CI_Controller {
 		}else{
 			$data['pengguna_masuk'] = "";
 		}
+		$data['pengaturan'] = $this->admin->pengaturan();
 
 		// KHUSUS
 		if($id==null){
@@ -82,6 +85,7 @@ class Rup extends CI_Controller {
 		}else{
 			$data['pengguna_masuk'] = "";
 		}
+		$data['pengaturan'] = $this->admin->pengaturan();
 
 		// KHUSUS
 		if($id==null){
