@@ -23,7 +23,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
+// local
 $config['base_url'] = 'http://localhost/e-protrack/2020';
+// server
+// $config['base_url'] = 'http://118.97.133.51/eprotrack/2020/';
 
 /*
 |--------------------------------------------------------------------------

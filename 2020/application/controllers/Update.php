@@ -43,7 +43,7 @@ class Update extends CI_Controller {
 		$data['judul'] = "Master";
 		$data['subjudul'] = "Update Data RUP Penyedia";
 
-		$rup = rup('offline');
+		$rup = rup($data['pengaturan']['jaringan']);
 		$data['json'] = $rup['penyedia'];
 		$data['db'] = $this->rup->penyedia();
 		$this->template->load('template', 'update/penyedia', $data);
@@ -74,6 +74,12 @@ class Update extends CI_Controller {
 					$jenis_pengadaan = 'Barang';
 					break;
 				case 'Barang;Barang;Barang;Barang;Barang;Barang':
+					$jenis_pengadaan = 'Barang';
+					break;
+				case 'Barang;Barang;Barang;Barang;Barang;Barang;Barang;Barang;Barang;Barang;Barang;Barang;Barang;Barang;Barang;Barang':
+					$jenis_pengadaan = 'Barang';
+					break;
+				case 'Barang;Jasa Lainnya;Barang;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Barang;Barang;Barang;Barang;Jasa Lainnya;Jasa Lainnya;Barang;Barang;Jasa Lainnya':
 					$jenis_pengadaan = 'Barang';
 					break;
 				case 'Jasa Konsultansi;Jasa Konsultansi':
@@ -209,7 +215,7 @@ class Update extends CI_Controller {
 		$data['judul'] = "Master";
 		$data['subjudul'] = "Update Data RUP Swakelola";
 
-		$rup = rup('offline');
+		$rup = rup($data['pengaturan']['jaringan']);
 		$data['json'] = $rup['swakelola'];
 		$data['db'] = $this->rup->swakelola();
 		$this->template->load('template', 'update/swakelola', $data);
@@ -336,10 +342,19 @@ class Update extends CI_Controller {
 				case 'Barang;Barang;Barang;Barang;Barang;Barang':
 					$jenis_pengadaan = 'Barang';
 					break;
+				case 'Barang;Barang;Barang;Barang;Barang;Barang;Barang;Barang;Barang;Barang;Barang;Barang;Barang;Barang;Barang;Barang':
+					$jenis_pengadaan = 'Barang';
+					break;
+				case 'Barang;Jasa Lainnya;Barang;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Barang;Barang;Barang;Barang;Jasa Lainnya;Jasa Lainnya;Barang;Barang;Jasa Lainnya':
+					$jenis_pengadaan = 'Barang';
+					break;
 				case 'Jasa Konsultansi;Jasa Konsultansi':
 					$jenis_pengadaan = 'Jasa Konsultansi';
 					break;
 				case 'Jasa Lainnya;Barang;Barang;Barang;Barang;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Barang;Barang;Barang;Barang;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya':
+					$jenis_pengadaan = 'Jasa Lainnya';
+					break;
+				case 'Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Barang;Barang;Barang;Barang;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Barang;Barang;Barang;Barang':
 					$jenis_pengadaan = 'Jasa Lainnya';
 					break;
 				case 'Jasa Lainnya;Jasa Lainnya':
