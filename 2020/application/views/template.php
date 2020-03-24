@@ -63,6 +63,7 @@
             <ul class="nav navbar-nav">
               <li class="<?php if($judul=='Beranda'){echo "active";} ?>"><a href="<?=base_url() ?>">Beranda</a></li>
               <?php if($pengguna_masuk!=''){ ?>
+                <li class="<?php if($judul=='Tracking'){echo "active";} ?>"><a href="<?=base_url('tracking') ?>">Tracking</a></li>
                 <li class="<?php if($judul=='RUP'){echo "active";} ?>"><a href="<?=base_url('rup') ?>">RUP</a></li>
                 <!-- <li class="<?php if($judul=='Penilaian Kinerja Rekanan'){echo "active";} ?>"><a href="<?=base_url('pkr') ?>">Penilaian Kinerja Rekanan</a></li> -->
                 <?php if($pengguna_masuk['id_level']==1){ ?>

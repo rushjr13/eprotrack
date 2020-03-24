@@ -15,19 +15,19 @@ function rup($jaringan)
         // OFFLINE
         $penyedia = base_url('json/sirup-penyedia.json');
         $swakelola = base_url('json/sirup-swakelola.json');
-        $tender = base_url('json/spse-tender.json');
+        // $tender = base_url('json/spse-tender.json');
     }else{
         // ONLINE
         $penyedia = "https://inaproc.lkpp.go.id/isb/api/2b60f20d-95dd-437c-9c94-61d0c08748ae/json/23093911/PengumumanPenyediaDaerah1618/tipe/4:12/parameter/2020:D76";
         $swakelola = "https://inaproc.lkpp.go.id/isb/api/e0da2d3b-e1d8-49d5-89fa-5490062d7315/json/23093919/PengumumanSwakelolaDaerah1618/tipe/4:12/parameter/2020:D76";
-        $tender = "https://lpse.gorontaloprov.go.id/eproc4/APICtr/downloadFile?tahun=2020";
+        // $tender = base_url('json/spse-tender.json');
     }
     $json_penyedia = file_get_contents($penyedia);
     $json_swakelola = file_get_contents($swakelola);
-    $json_tender = file_get_contents($tender);
+    // $json_tender = file_get_contents($tender);
     $data['penyedia'] = json_decode($json_penyedia, true);
     $data['swakelola'] = json_decode($json_swakelola, true);
-    $data['tender'] = json_decode($json_tender, true);
+    // $data['tender'] = json_decode($json_tender, true);
     return $data;
 }
 
