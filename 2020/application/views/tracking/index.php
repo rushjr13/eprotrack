@@ -94,7 +94,7 @@
 </div>
 
 <!-- RUP -->
-<!-- <div class="nav-tabs-custom">
+<div class="nav-tabs-custom">
   <ul class="nav nav-tabs">
     <li class="active"><a href="#penyedia" data-toggle="tab">Penyedia</a></li>
     <li><a href="#swakelola" data-toggle="tab">Swakelola</a></li>
@@ -107,4 +107,4 @@
       <?php include('swakelola.php') ?>
     </div>
   </div>
-</div> -->
+</div>

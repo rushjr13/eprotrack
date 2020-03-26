@@ -112,6 +112,12 @@ class Update extends CI_Controller {
 				case 'Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya':
 					$jenis_pengadaan = 'Jasa Lainnya';
 					break;
+				case 'Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Barang;Barang;Barang;Barang;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Barang;Barang;Barang;Barang':
+					$jenis_pengadaan = 'Jasa Lainnya';
+					break;
+				case 'Jasa Lainnya;Barang;Barang;Barang;Barang;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Jasa Lainnya;Barang;Barang;Barang;Barang;Jasa Lainnya;Jasa Lainnya':
+					$jenis_pengadaan = 'Jasa Lainnya';
+					break;
 				case 'Pekerjaan Konstruksi;Pekerjaan Konstruksi':
 					$jenis_pengadaan = 'Pekerjaan Konstruksi';
 					break;				

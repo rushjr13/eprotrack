@@ -21,7 +21,7 @@
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom">
+  <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom">
     <div class="container">
       <a class="navbar-brand" href="#"><img src="img/logo.png" width="25"> e-<span class="text-danger">Pro</span>track+</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,17 +38,15 @@
         </ul>
       </div>
     </div>
-  </nav>
+  </nav> -->
 
   <!-- Page Content -->
   <section>
-    <div class="container my-auto">
-      <div class="row">
-        <div class="col-lg-6">
-          <h1 class="mt-5 text-light text-shadow"><img src="img/logo.png" width="75"> e-<span class="text-danger">PRO</span>TRACK+</h1>
-          <p class="text-justify text-light text-shadow mb-5"><strong>Elektronik <span class="text-danger">Procurement</span> Tracking</strong>, Adalah aplikasi untuk melacak data pengadaan yang ada di seluruh OPD Provinsi Gorontalo, dengan menggunakan metode pengadaan apapun dan jenis pengadaan apapun.</p>
-          <img src="img/gorontalo.png" class="img img-responsive mt-5" width="100%">
-        </div>
+    <div class="ep">
+      <div class="eprotrack">
+        <h1 class="text-light text-shadow"><img src="img/logo.png" width="200"><br>e-<span class="text-danger">PRO</span>TRACK+</h1>
+        <p class="text-light text-shadow"><strong>Elektronik <span class="text-danger">Procurement</span> Tracking</strong>, Adalah aplikasi untuk melacak data pengadaan yang ada di seluruh OPD Provinsi Gorontalo, dengan menggunakan metode pengadaan apapun dan jenis pengadaan apapun.</p>
+        <span id="countdown">5</span>
       </div>
     </div>
   </section>
@@ -56,38 +54,19 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript">
+    
+    var seconds = document.getElementById("countdown").textContent;
+    var countdown = setInterval(function() {
+        seconds--;
+        document.getElementById("countdown").textContent = seconds;
+        if (seconds <= 0){
+          clearInterval(countdown);
+        }
+    }, 1000);
+
+  </script>
 
 </body>
 
 </html>
-
-<script>
-/* Get the documentElement (<html>) to display the page in fullscreen */
-var elem = document.documentElement;
-
-/* View in fullscreen */
-function openFullscreen() {
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.mozRequestFullScreen) { /* Firefox */
-    elem.mozRequestFullScreen();
-  } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) { /* IE/Edge */
-    elem.msRequestFullscreen();
-  }
-}
-
-/* Close fullscreen */
-function closeFullscreen() {
-  if (document.exitFullscreen) {
-    document.exitFullscreen();
-  } else if (document.mozCancelFullScreen) { /* Firefox */
-    document.mozCancelFullScreen();
-  } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
-    document.webkitExitFullscreen();
-  } else if (document.msExitFullscreen) { /* IE/Edge */
-    document.msExitFullscreen();
-  }
-}
-</script>

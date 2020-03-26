@@ -5,8 +5,22 @@
  */
 body {
   background: url('image.png') no-repeat center center fixed;
+  /*background-color: black;*/
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
+}
+
+.ep {
+	width: 750px;
+	/*border: 5px solid #333;*/
+	margin: 125px auto;
+	padding: 5px;
+	box-sizing: border-box;
+	display: flex;
+}
+
+.eprotrack {
+	text-align: center;
 }
